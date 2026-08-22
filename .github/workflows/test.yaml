@@ -16,6 +16,13 @@ jobs:
           go mod tidy
           git diff --exit-code -- go.mod go.sum || \
             (echo; echo "Unexpected difference in go.mod/go.sum files. Run 'go mod tidy' command or revert any go.mod/go.sum changes and commit."; exit 1)
+  docs:
+    name: docs sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: check docs sync
+        run: ./scripts/check-docs-sync.sh
   go_test:
     name: go test (Go ${{ matrix.go-version }})
     runs-on: ubuntu-latest
