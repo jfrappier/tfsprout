@@ -9,7 +9,7 @@ Prefix meanings are covered in [Checks and categories](../concepts/checks-and-ca
 
 Three checks can rewrite your code under `-fix`: **R007**, **XR007**, and **XR008**. See [Automated fixes](../usage/automated-fixes.md).
 
-Rows marked **REMOVED in v0.30.0** no longer report anything. Their IDs are retained permanently so existing ignore comments and CI flags keep working — see [Removed checks](removed-checks.md).
+Rows marked **REMOVED** (tfproviderlint v0.30.0) no longer report anything. Their IDs are retained permanently so existing ignore comments and CI flags keep working — see [Removed checks](removed-checks.md).
 
 For the authoritative description of any check as the running binary sees it:
 
@@ -53,7 +53,7 @@ Patterns in `schema.Resource` definitions and CRUD functions.
 | [R005](../../passes/R005) | check for `ResourceData.HasChange()` calls that can be combined into one `HasChanges()` call | AST |
 | [R006](../../passes/R006) | check for `RetryFunc` that omit retryable errors | AST |
 | [R007](../../passes/R007) | check for deprecated `(schema.ResourceData).Partial` usage | AST |
-| [R008](../../passes/R008) | **REMOVED in v0.30.0** check for deprecated `(schema.ResourceData).SetPartial` usage | AST |
+| [R008](../../passes/R008) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `(schema.ResourceData).SetPartial` usage | AST |
 | [R009](../../passes/R009) | check for Go panic usage | AST |
 | [R010](../../passes/R010) | check for `(schema.ResourceData).GetChange` assignment which should use `(schema.ResourceData).Get` | AST |
 | [R011](../../passes/R011) | check for `Resource` that configure `MigrateState` | AST |
@@ -105,7 +105,7 @@ Patterns in `schema.Schema` definitions and attribute maps. Several of these cat
 | [S031](../../passes/S031) | check for `Schema` of `Computed` only with `MaxItems` configured | AST |
 | [S032](../../passes/S032) | check for `Schema` of `Computed` only with `MinItems` configured | AST |
 | [S033](../../passes/S033) | check for `Schema` of `Computed` only with `StateFunc` configured | AST |
-| [S034](../../passes/S034) | **REMOVED in v0.30.0** check for `Schema` that configure `PromoteSingle` | AST |
+| [S034](../../passes/S034) | **REMOVED** (tfproviderlint v0.30.0) check for `Schema` that configure `PromoteSingle` | AST |
 | [S035](../../passes/S035) | check for `Schema` with invalid `AtLeastOneOf` attribute references | AST |
 | [S036](../../passes/S036) | check for `Schema` with invalid `ConflictsWith` attribute references | AST |
 | [S037](../../passes/S037) | check for `Schema` with invalid `ExactlyOneOf` attribute references | AST |
@@ -117,13 +117,13 @@ Patterns in `SchemaValidateFunc` implementations and `helper/validation` usage. 
 | Check | Description | Type |
 |---|---|---|
 | [V001](../../passes/V001) | check for custom `SchemaValidateFunc` that implement `validation.StringMatch()` or `validation.StringDoesNotMatch()` | AST |
-| [V002](../../passes/V002) | **REMOVED in v0.30.0** check for deprecated `CIDRNetwork` validation function usage | AST |
-| [V003](../../passes/V003) | **REMOVED in v0.30.0** check for deprecated `IPRange` validation function usage | AST |
-| [V004](../../passes/V004) | **REMOVED in v0.30.0** check for deprecated `SingleIP` validation function usage | AST |
-| [V005](../../passes/V005) | **REMOVED in v0.30.0** check for deprecated `ValidateJsonString` validation function usage | AST |
-| [V006](../../passes/V006) | **REMOVED in v0.30.0** check for deprecated `ValidateListUniqueStrings` validation function usage | AST |
-| [V007](../../passes/V007) | **REMOVED in v0.30.0** check for deprecated `ValidateRegexp` validation function usage | AST |
-| [V008](../../passes/V008) | **REMOVED in v0.30.0** check for deprecated `ValidateRFC3339TimeString` validation function usage | AST |
+| [V002](../../passes/V002) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `CIDRNetwork` validation function usage | AST |
+| [V003](../../passes/V003) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `IPRange` validation function usage | AST |
+| [V004](../../passes/V004) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `SingleIP` validation function usage | AST |
+| [V005](../../passes/V005) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `ValidateJsonString` validation function usage | AST |
+| [V006](../../passes/V006) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `ValidateListUniqueStrings` validation function usage | AST |
+| [V007](../../passes/V007) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `ValidateRegexp` validation function usage | AST |
+| [V008](../../passes/V008) | **REMOVED** (tfproviderlint v0.30.0) check for deprecated `ValidateRFC3339TimeString` validation function usage | AST |
 | [V009](../../passes/V009) | check for `validation.StringMatch()` call with empty message argument | AST |
 | [V010](../../passes/V010) | check for `validation.StringDoesNotMatch()` call with empty message argument | AST |
 | [V011](../../passes/V011) | check for custom `SchemaValidateFunc` that implement `validation.StringLenBetween()` | AST |

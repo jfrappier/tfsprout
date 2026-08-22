@@ -1,6 +1,6 @@
 # V005
 
-_This terraform-plugin-sdk (v1) analyzer has been removed in tfsprout v0.30.0._
+_This terraform-plugin-sdk (v1) analyzer was removed upstream in [tfproviderlint](https://github.com/bflad/tfproviderlint) v0.30.0 and reports nothing in tfsprout. Its ID is retained so existing `//lintignore:` comments and CI flags keep working._
 
 The V005 analyzer reports usage of the deprecated [ValidateJsonString](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#ValidateJsonString) validation function that should be replaced with [StringIsJSON](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#StringIsJSON).
 

@@ -46,7 +46,12 @@ This project follows the [Go support policy](https://golang.org/doc/devel/releas
 
 Currently **Go 1.25 or later** is required, both to build tfsprout and to consume it as a dependency. That floor comes from `golang.org/x/tools`, whose Go 1.27-compatible release requires Go 1.25 as a minimum.
 
-The Go version that matters is the one **analyzing** your provider, not the one your provider targets. Analyzing a provider with a Go 1.27 toolchain requires tfsprout v0.1.1 or later; earlier versions crash. See [Troubleshooting](../usage/troubleshooting.md).
+A Go toolchain must also be present **at runtime**, not just to build tfsprout. Package loading shells out to `go env` and `go list`, so a machine or container without `go` on `PATH` cannot run the tool at all. See [Go toolchain requirement](../install.md#go-toolchain-requirement).
+
+The Go version that matters is the one **analyzing** your provider, not the one your provider targets. Two ways this bites:
+
+- `go list` fails on a module whose `go` directive is newer than the installed toolchain, so an old toolchain cannot analyze a newer provider.
+- Analyzing with a Go 1.27 toolchain requires tfsprout v0.1.1 or later; earlier versions crash. See [Troubleshooting](../usage/troubleshooting.md).
 
 ## Non-goals
 

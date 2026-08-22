@@ -74,4 +74,6 @@ goreleaser build --snapshot --clean
 
 The `Dockerfile` copies a prebuilt `tfsprout` binary from the build context rather than compiling one, so it expects a binary to exist beside it at build time.
 
-Note its base image is `golang:1.22-bookworm`, which predates the Go 1.25 floor in `go.mod`. This is harmless today — the image only carries an already-compiled static binary and never invokes the toolchain — but it is misleading, and worth aligning the next time the file is touched.
+Its base image is a `golang:` image on purpose. tfsprout needs a **Go toolchain at runtime**, not only at build time: `go/packages` shells out to `go env` and `go list` to load and type-check the provider under analysis. A minimal base such as `debian:bookworm-slim` or `scratch` would produce a binary that starts and then fails to load any package.
+
+Keep the tag on the newest Go release the project supports. The toolchain in the image caps which providers it can analyze, because `go list` fails on a module whose `go` directive is newer than the toolchain — an image pinned to Go 1.22 cannot analyze a provider declaring `go 1.25`.

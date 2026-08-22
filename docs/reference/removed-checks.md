@@ -24,7 +24,7 @@ Note that `IsIPv4Range`, `IsIPAddress`, `StringIsJSON`, `ListOfUniqueStrings`, `
 
 All nine targeted `terraform-plugin-sdk` **v1** APIs. Those functions do not exist in v2, so a provider that compiles against v2 cannot contain the patterns these checks looked for. Keeping them would cost analysis time on every run and never produce a report.
 
-The removal happened upstream in `tfproviderlint` v0.30.0, and tfsprout inherited it. The per-check pages carry that version number; it refers to the upstream lineage, not to a tfsprout release, since tfsprout's own version history starts at v0.1.0. See [Migrating from tfproviderlint](../migrating-from-tfproviderlint.md).
+The removal happened upstream in `tfproviderlint` v0.30.0, and tfsprout inherited it. That version number belongs to the upstream lineage, not to a tfsprout release — tfsprout's own history starts at v0.1.0. See [Migrating from tfproviderlint](../migrating-from-tfproviderlint.md).
 
 ## What happens if you reference one
 

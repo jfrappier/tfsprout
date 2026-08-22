@@ -1,6 +1,6 @@
 # V008
 
-_This terraform-plugin-sdk (v1) analyzer has been removed in tfsprout v0.30.0._
+_This terraform-plugin-sdk (v1) analyzer was removed upstream in [tfproviderlint](https://github.com/bflad/tfproviderlint) v0.30.0 and reports nothing in tfsprout. Its ID is retained so existing `//lintignore:` comments and CI flags keep working._
 
 The V008 analyzer reports usage of the deprecated [ValidateRFC3339TimeString](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#ValidateRFC3339TimeString) validation function that should be replaced with [IsRFC3339Time](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#IsRFC3339Time).
 
