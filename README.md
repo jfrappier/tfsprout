@@ -2,7 +2,7 @@
 
 Static analysis libraries and tooling for [Terraform Provider](https://www.terraform.io/docs/providers/index.html) code.
 
-<img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/8d14fa27-9636-4d45-9fa1-390cc33dd77a" />
+<p align="center"><img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/8d14fa27-9636-4d45-9fa1-390cc33dd77a" /></p>
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/bflad/tfproviderlint)](https://pkg.go.dev/github.com/bflad/tfproviderlint)
 
