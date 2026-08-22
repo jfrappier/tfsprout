@@ -56,7 +56,7 @@ Then `go mod tidy`, and install with `go install github.com/jfrappier/tfsprout/c
 The repository includes a `Dockerfile` that wraps a prebuilt binary:
 
 ```dockerfile
-FROM golang:1.22-bookworm
+FROM golang:1.27-bookworm
 WORKDIR /src
 COPY tfsprout /usr/bin/tfsprout
 ENTRYPOINT ["/usr/bin/tfsprout"]
@@ -68,6 +68,17 @@ It expects a `tfsprout` binary in the build context rather than compiling one, s
 ```shell
 docker run --rm -v "$PWD:/src" tfsprout ./...
 ```
+
+The base image is a `golang:` image because **tfsprout requires a Go toolchain to run**, not merely to build — see [Go toolchain requirement](#go-toolchain-requirement) below. Substituting a minimal base image will produce a container that starts and then fails to load any package.
+
+## Go toolchain requirement
+
+tfsprout shells out to `go env` and `go list` while loading the packages it analyzes. Wherever you run it — locally, in CI, or in a container — a Go toolchain must be on `PATH`.
+
+Two consequences worth planning around:
+
+- **The toolchain version caps what you can analyze.** `go list` fails on a module whose `go` directive is newer than the installed toolchain, so analyzing a provider that declares `go 1.27` needs a Go 1.27 toolchain.
+- **The analyzing toolchain is what matters**, not the one your provider targets. Running tfsprout under Go 1.27 requires tfsprout v0.1.1 or later; earlier versions crash. See [Troubleshooting](usage/troubleshooting.md).
 
 ## GitHub Action
 
