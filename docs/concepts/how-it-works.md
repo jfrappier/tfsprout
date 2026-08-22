@@ -12,8 +12,8 @@ The entry points are thin. `cmd/tfsprout/tfsprout.go` registers a version flag a
 
 ```go
 func main() {
-	cmdflags.AddVersionFlag()
-	multichecker.Main(passes.AllChecks...)
+    cmdflags.AddVersionFlag()
+    multichecker.Main(passes.AllChecks...)
 }
 ```
 
@@ -31,13 +31,13 @@ This is the key structural idea, and the thing that surprises most first-time co
 
 ```go
 var Analyzer = &analysis.Analyzer{
-	Name: analyzerName,
-	Doc:  Doc,
-	Requires: []*analysis.Analyzer{
-		commentignore.Analyzer,
-		testcaseinfo.Analyzer,
-	},
-	Run: run,
+    Name: analyzerName,
+    Doc:  Doc,
+    Requires: []*analysis.Analyzer{
+        commentignore.Analyzer,
+        testcaseinfo.Analyzer,
+    },
+    Run: run,
 }
 ```
 

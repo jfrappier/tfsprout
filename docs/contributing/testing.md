@@ -54,16 +54,16 @@ Always include:
 package AT001_test
 
 import (
-	"testing"
+    "testing"
 
-	"golang.org/x/tools/go/analysis/analysistest"
+    "golang.org/x/tools/go/analysis/analysistest"
 
-	"github.com/jfrappier/tfsprout/passes/AT001"
+    "github.com/jfrappier/tfsprout/passes/AT001"
 )
 
 func TestAT001(t *testing.T) {
-	testdata := analysistest.TestData()
-	analysistest.Run(t, testdata, AT001.Analyzer, "testdata/src/a")
+    testdata := analysistest.TestData()
+    analysistest.Run(t, testdata, AT001.Analyzer, "testdata/src/a")
 }
 ```
 
@@ -75,10 +75,10 @@ Set the flag on the analyzer and point at a fixture directory built for it:
 
 ```go
 func TestAT001CustomSuffixes(t *testing.T) {
-	testdata := analysistest.TestData()
-	analyzer := AT001.Analyzer
-	analyzer.Flags.Set("ignored-filename-suffixes", "_data_source_test.go")
-	analysistest.Run(t, testdata, analyzer, "testdata/src/suffixes")
+    testdata := analysistest.TestData()
+    analyzer := AT001.Analyzer
+    analyzer.Flags.Set("ignored-filename-suffixes", "_data_source_test.go")
+    analysistest.Run(t, testdata, analyzer, "testdata/src/suffixes")
 }
 ```
 
@@ -90,14 +90,14 @@ For checks that support `-fix`, use `RunWithSuggestedFixes`:
 
 ```go
 import (
-	"testing"
+    "testing"
 
-	"golang.org/x/tools/go/analysis/analysistest"
+    "golang.org/x/tools/go/analysis/analysistest"
 )
 
 func TestAnalyzerFixes(t *testing.T) {
-	testdata := analysistest.TestData()
-	analysistest.RunWithSuggestedFixes(t, testdata, Analyzer, "testdata/src/a")
+    testdata := analysistest.TestData()
+    analysistest.RunWithSuggestedFixes(t, testdata, Analyzer, "testdata/src/a")
 }
 ```
 

@@ -20,10 +20,10 @@ Create `passes/S038/` (or `xpasses/XS003/` for an extra check), containing `S038
 package S038
 
 import (
-	"golang.org/x/tools/go/analysis"
+    "golang.org/x/tools/go/analysis"
 
-	"github.com/jfrappier/tfsprout/passes/commentignore"
-	"github.com/jfrappier/tfsprout/passes/helper/schema/schemainfocompositelit"
+    "github.com/jfrappier/tfsprout/passes/commentignore"
+    "github.com/jfrappier/tfsprout/passes/helper/schema/schemainfocompositelit"
 )
 
 const Doc = `check for Schema that configure both Sensitive and Computed
@@ -34,13 +34,13 @@ and Computed, where the sensitivity has no effect.`
 const analyzerName = "S038"
 
 var Analyzer = &analysis.Analyzer{
-	Name: analyzerName,
-	Doc:  Doc,
-	Requires: []*analysis.Analyzer{
-		commentignore.Analyzer,
-		schemainfocompositelit.Analyzer,
-	},
-	Run: run,
+    Name: analyzerName,
+    Doc:  Doc,
+    Requires: []*analysis.Analyzer{
+        commentignore.Analyzer,
+        schemainfocompositelit.Analyzer,
+    },
+    Run: run,
 }
 ```
 
@@ -56,22 +56,22 @@ Read your dependencies out of `pass.ResultOf`, skip suppressed nodes, and report
 
 ```go
 func run(pass *analysis.Pass) (interface{}, error) {
-	ignorer := pass.ResultOf[commentignore.Analyzer].(*commentignore.Ignorer)
-	schemaInfos := pass.ResultOf[schemainfocompositelit.Analyzer].([]*schema.SchemaInfo)
+    ignorer := pass.ResultOf[commentignore.Analyzer].(*commentignore.Ignorer)
+    schemaInfos := pass.ResultOf[schemainfocompositelit.Analyzer].([]*schema.SchemaInfo)
 
-	for _, schemaInfo := range schemaInfos {
-		if ignorer.ShouldIgnore(analyzerName, schemaInfo.AstCompositeLit) {
-			continue
-		}
+    for _, schemaInfo := range schemaInfos {
+        if ignorer.ShouldIgnore(analyzerName, schemaInfo.AstCompositeLit) {
+            continue
+        }
 
-		if !schemaInfo.DeclaresBoolFieldWithZeroValue(schema.SchemaFieldSensitive) {
-			continue
-		}
+        if !schemaInfo.DeclaresBoolFieldWithZeroValue(schema.SchemaFieldSensitive) {
+            continue
+        }
 
-		pass.Reportf(schemaInfo.AstCompositeLit.Lbrace, "%s: schema should not configure Sensitive with Computed", analyzerName)
-	}
+        pass.Reportf(schemaInfo.AstCompositeLit.Lbrace, "%s: schema should not configure Sensitive with Computed", analyzerName)
+    }
 
-	return nil, nil
+    return nil, nil
 }
 ```
 
@@ -106,8 +106,8 @@ Copy `go.mod` and `go.sum` from a neighbouring check. In the source files, mark 
 
 ```go
 _ = schema.Schema{
-	Computed:  true,
-	Sensitive: true,
+    Computed:  true,
+    Sensitive: true,
 } // want "schema should not configure Sensitive with Computed"
 ```
 
@@ -119,16 +119,16 @@ Cover the passing cases too — a check that only has failing fixtures will not 
 package S038_test
 
 import (
-	"testing"
+    "testing"
 
-	"golang.org/x/tools/go/analysis/analysistest"
+    "golang.org/x/tools/go/analysis/analysistest"
 
-	"github.com/jfrappier/tfsprout/passes/S038"
+    "github.com/jfrappier/tfsprout/passes/S038"
 )
 
 func TestS038(t *testing.T) {
-	testdata := analysistest.TestData()
-	analysistest.Run(t, testdata, S038.Analyzer, "testdata/src/a")
+    testdata := analysistest.TestData()
+    analysistest.Run(t, testdata, S038.Analyzer, "testdata/src/a")
 }
 ```
 

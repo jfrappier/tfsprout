@@ -8,20 +8,20 @@ The `go/analysis` framework and this codebase are designed for flexibility. You 
 package main
 
 import (
-	"github.com/jfrappier/tfsprout/helper/cmdflags"
-	"github.com/jfrappier/tfsprout/passes"
-	"github.com/jfrappier/tfsprout/xpasses"
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/multichecker"
+    "github.com/jfrappier/tfsprout/helper/cmdflags"
+    "github.com/jfrappier/tfsprout/passes"
+    "github.com/jfrappier/tfsprout/xpasses"
+    "golang.org/x/tools/go/analysis"
+    "golang.org/x/tools/go/analysis/multichecker"
 )
 
 func main() {
-	cmdflags.AddVersionFlag()
+    cmdflags.AddVersionFlag()
 
-	var analyzers []*analysis.Analyzer
-	analyzers = append(analyzers, passes.AllChecks...)
-	analyzers = append(analyzers, xpasses.AllChecks...)
-	multichecker.Main(analyzers...)
+    var analyzers []*analysis.Analyzer
+    analyzers = append(analyzers, passes.AllChecks...)
+    analyzers = append(analyzers, xpasses.AllChecks...)
+    multichecker.Main(analyzers...)
 }
 ```
 
@@ -35,20 +35,20 @@ The common case: all standard checks, plus the two extras you actually want.
 package main
 
 import (
-	"github.com/jfrappier/tfsprout/helper/cmdflags"
-	"github.com/jfrappier/tfsprout/passes"
-	"github.com/jfrappier/tfsprout/xpasses/XR002"
-	"github.com/jfrappier/tfsprout/xpasses/XR003"
-	"golang.org/x/tools/go/analysis"
-	"golang.org/x/tools/go/analysis/multichecker"
+    "github.com/jfrappier/tfsprout/helper/cmdflags"
+    "github.com/jfrappier/tfsprout/passes"
+    "github.com/jfrappier/tfsprout/xpasses/XR002"
+    "github.com/jfrappier/tfsprout/xpasses/XR003"
+    "golang.org/x/tools/go/analysis"
+    "golang.org/x/tools/go/analysis/multichecker"
 )
 
 func main() {
-	cmdflags.AddVersionFlag()
+    cmdflags.AddVersionFlag()
 
-	analyzers := append([]*analysis.Analyzer{}, passes.AllChecks...)
-	analyzers = append(analyzers, XR002.Analyzer, XR003.Analyzer)
-	multichecker.Main(analyzers...)
+    analyzers := append([]*analysis.Analyzer{}, passes.AllChecks...)
+    analyzers = append(analyzers, XR002.Analyzer, XR003.Analyzer)
+    multichecker.Main(analyzers...)
 }
 ```
 
@@ -60,10 +60,10 @@ There is no "all except" helper. To exclude a check, list the ones you want indi
 
 ```go
 analyzers := []*analysis.Analyzer{
-	AT001.Analyzer,
-	AT002.Analyzer,
-	// AT003 deliberately omitted: conflicts with our naming convention
-	S013.Analyzer,
+    AT001.Analyzer,
+    AT002.Analyzer,
+    // AT003 deliberately omitted: conflicts with our naming convention
+    S013.Analyzer,
 }
 ```
 
@@ -76,9 +76,9 @@ excluded := map[string]bool{"AT003": true, "R009": true}
 
 var analyzers []*analysis.Analyzer
 for _, a := range passes.AllChecks {
-	if !excluded[a.Name] {
-		analyzers = append(analyzers, a)
-	}
+    if !excluded[a.Name] {
+        analyzers = append(analyzers, a)
+    }
 }
 ```
 

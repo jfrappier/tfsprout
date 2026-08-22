@@ -57,7 +57,7 @@ Work through these in order:
 1. **Check the ID spelling.** `//lintignore:S0013` is silently inert — IDs are not validated. Compare against the [check index](../reference/checks.md).
 2. **Check the comment style.** Only `//` line comments are recognized. `/* lintignore:S013 */` does nothing.
 3. **Check placement.** The comment must be on the line immediately preceding the code, or trailing it on the same line, so that it attaches to the right AST node.
-4. **Check for spaces in a list.** `//lintignore:S013, S016` — the space makes the second ID ` S016`, which matches nothing. Write `//lintignore:S013,S016`.
+4. **Check for spaces in a list.** In `//lintignore:S013, S016` the space becomes part of the second key, so it matches no check. Write `//lintignore:S013,S016` with no spaces.
 
 See [Ignoring reports](ignoring-reports.md).
 

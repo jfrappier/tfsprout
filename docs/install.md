@@ -45,7 +45,7 @@ If your provider already pins its tooling through a `tools.go` file, add the imp
 package tools
 
 import (
-	_ "github.com/jfrappier/tfsprout/cmd/tfsprout"
+    _ "github.com/jfrappier/tfsprout/cmd/tfsprout"
 )
 ```
 

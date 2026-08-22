@@ -41,7 +41,7 @@ missing="$(comm -23 <(echo "$on_disk") <(echo "$documented"))"
 if [[ -n "$missing" ]]; then
   status=1
   echo "error: check(s) exist on disk but are not listed in $INDEX:" >&2
-  echo "$missing" | sed 's/^/  /' >&2
+  echo "$missing" | awk '{print "  " $0}' >&2
   echo >&2
   echo "Add a row to the appropriate table, using the first line of the check's Doc constant" >&2
   echo "as the description. See docs/contributing/adding-an-analyzer.md" >&2
@@ -52,7 +52,7 @@ stale="$(comm -13 <(echo "$on_disk") <(echo "$documented"))"
 if [[ -n "$stale" ]]; then
   status=1
   echo "error: check(s) listed in $INDEX do not exist on disk:" >&2
-  echo "$stale" | sed 's/^/  /' >&2
+  echo "$stale" | awk '{print "  " $0}' >&2
   echo >&2
   echo "Remove the stale row, or restore the check directory." >&2
   echo >&2
