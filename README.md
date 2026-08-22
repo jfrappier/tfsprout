@@ -6,6 +6,8 @@ Static analysis libraries and tooling for [Terraform Provider](https://www.terra
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/jfrappier/tfsprout)](https://pkg.go.dev/github.com/jfrappier/tfsprout)
 
+> **Note:** tfsprout is a fork of [`tfproviderlint`](https://github.com/bflad/tfproviderlint). **v0.1.0 is a drop-in replacement** — the lint checks and their behavior are unchanged and there are no new features. Only the project name, command names (`tfproviderlint` -> `tfsprout`, `tfproviderlintx` -> `tfsproutx`), and Go module path differ.
+
 ## Install
 
 ### Local Install
