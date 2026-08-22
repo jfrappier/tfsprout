@@ -1,6 +1,6 @@
 # S034
 
-_This terraform-plugin-sdk (v1) analyzer has been removed in tfproviderlint v0.30.0._
+_This terraform-plugin-sdk (v1) analyzer has been removed in tfsprout v0.30.0._
 
 The S034 analyzer reports cases of schemas which enable `PromoteSingle`, which is not valid after Terraform 0.12. Existing implementations of `PromoteSingle` prior to Terraform 0.12 can be ignored currently.
 

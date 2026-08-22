@@ -3,8 +3,8 @@ package R010
 import (
 	"go/ast"
 
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/resourcedatagetchangeassignstmt"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/resourcedatagetchangeassignstmt"
 	"golang.org/x/tools/go/analysis"
 )
 

@@ -3,7 +3,7 @@ package R009_test
 import (
 	"testing"
 
-	"github.com/bflad/tfproviderlint/passes/R009"
+	"github.com/jfrappier/tfsprout/passes/R009"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

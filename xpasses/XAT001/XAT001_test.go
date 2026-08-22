@@ -5,7 +5,7 @@ import (
 
 	"golang.org/x/tools/go/analysis/analysistest"
 
-	"github.com/bflad/tfproviderlint/xpasses/XAT001"
+	"github.com/jfrappier/tfsprout/xpasses/XAT001"
 )
 
 func TestXAT001(t *testing.T) {

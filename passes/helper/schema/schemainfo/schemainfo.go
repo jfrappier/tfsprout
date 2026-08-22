@@ -8,8 +8,8 @@ import (
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"
 
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/schema"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/schemamapcompositelit"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/schemamapcompositelit"
 )
 
 var Analyzer = &analysis.Analyzer{

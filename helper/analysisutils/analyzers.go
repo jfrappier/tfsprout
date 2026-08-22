@@ -6,7 +6,7 @@ import (
 	"go/types"
 	"reflect"
 
-	"github.com/bflad/tfproviderlint/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 )

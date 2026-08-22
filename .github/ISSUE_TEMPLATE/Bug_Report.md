@@ -14,10 +14,10 @@ about: If something isn't working as expected 🤔.
 
 <!--- Thank you for keeping this note for the community --->
 
-### tfproviderlint and terraform-plugin-sdk Version
+### tfsprout and terraform-plugin-sdk Version
 
 ```console
-$ tfproviderlint -version
+$ tfsprout -version
 
 $ go mod graph | cut -d' ' -f 1 | grep terraform-plugin-sdk | uniq
 

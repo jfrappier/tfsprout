@@ -4,7 +4,7 @@ import (
 	"go/ast"
 	"reflect"
 
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/resource"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/resource"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"

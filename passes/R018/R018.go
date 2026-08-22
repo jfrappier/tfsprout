@@ -5,8 +5,8 @@ import (
 
 	"golang.org/x/tools/go/analysis"
 
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/stdlib/timesleepcallexpr"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/stdlib/timesleepcallexpr"
 )
 
 const Doc = `check for time.Sleep() function usage

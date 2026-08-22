@@ -1,9 +1,9 @@
 package XR008
 
 import (
-	"github.com/bflad/tfproviderlint/helper/analysisutils"
-	"github.com/bflad/tfproviderlint/passes/stdlib/osexeccommandcontextcallexpr"
-	"github.com/bflad/tfproviderlint/passes/stdlib/osexeccommandcontextselectorexpr"
+	"github.com/jfrappier/tfsprout/helper/analysisutils"
+	"github.com/jfrappier/tfsprout/passes/stdlib/osexeccommandcontextcallexpr"
+	"github.com/jfrappier/tfsprout/passes/stdlib/osexeccommandcontextselectorexpr"
 )
 
 var Analyzer = analysisutils.AvoidSelectorExprAnalyzer(

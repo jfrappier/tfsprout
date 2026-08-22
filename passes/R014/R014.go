@@ -1,10 +1,10 @@
 package R014
 
 import (
-	"github.com/bflad/tfproviderlint/helper/astutils"
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/schema"
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/crudfuncinfo"
+	"github.com/jfrappier/tfsprout/helper/astutils"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/crudfuncinfo"
 	"golang.org/x/tools/go/analysis"
 )
 

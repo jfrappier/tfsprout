@@ -1,4 +1,4 @@
-// The tfproviderlintx command is a static checker for Terraform Providers that includes extra checks.
+// The tfsproutx command is a static checker for Terraform Providers that includes extra checks.
 //
 // Each analyzer flag name is preceded by the analyzer name: -NAME.flag.
 // In addition, the -NAME flag itself controls whether the
@@ -7,9 +7,9 @@
 package main
 
 import (
-	"github.com/bflad/tfproviderlint/helper/cmdflags"
-	"github.com/bflad/tfproviderlint/passes"
-	"github.com/bflad/tfproviderlint/xpasses"
+	"github.com/jfrappier/tfsprout/helper/cmdflags"
+	"github.com/jfrappier/tfsprout/passes"
+	"github.com/jfrappier/tfsprout/xpasses"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/multichecker"
 )

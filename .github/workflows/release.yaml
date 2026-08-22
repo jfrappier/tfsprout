@@ -5,8 +5,8 @@ on:
       - "v[0-9]+.[0-9]+.[0-9]+"
 
 permissions:
-  # GoReleaser uses separate token for publishing to Homebrew repository
-  contents: read
+  # GoReleaser needs write access to create the GitHub Release and upload assets
+  contents: write
 
 jobs:
   go_mod:
@@ -44,18 +44,12 @@ jobs:
       - uses: actions/setup-go@0a12ed9d6a96ab950c8f026ed9f722fe0da7ef32 # v5.0.2
         with:
           go-version-file: 'go.mod'
-      - uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Import GPG key
-        id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4 # v6.1.0
-        with:
-          gpg_private_key: ${{ secrets.GPG_KEY }}
       - name: Generate Release Notes
+        # Extract the body of the topmost CHANGELOG section (everything after the
+        # first "# vX.Y.Z" header up to the next one). Works for the first release
+        # when no prior tag exists.
         run: |
-          sed -n -e "1{/# v/d;}" -e "2{/^$/d;}" -e "/# $(git describe --abbrev=0 --exclude="$(git describe --abbrev=0 --match='v*.*.*' --tags)" --match='v*.*.*' --tags)/q;p" CHANGELOG.md > RELEASE-NOTES.md
+          awk '/^# v/{c++; next} c==1{print} c>=2{exit}' CHANGELOG.md > RELEASE-NOTES.md
       - name: goreleaser check
         uses: goreleaser/goreleaser-action@286f3b13b1b49da4ac219696163fb8c1c93e1200 # v6.0.0
         with:
@@ -63,7 +57,6 @@ jobs:
       - name: goreleaser release
         uses: goreleaser/goreleaser-action@286f3b13b1b49da4ac219696163fb8c1c93e1200 # v6.0.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
-          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: release --release-notes RELEASE-NOTES.md --clean

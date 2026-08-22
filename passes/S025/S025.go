@@ -3,9 +3,9 @@ package S025
 import (
 	"go/ast"
 
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/schema"
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/schemainfocomputedonly"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/schemainfocomputedonly"
 	"golang.org/x/tools/go/analysis"
 )
 

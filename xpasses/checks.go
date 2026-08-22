@@ -1,17 +1,17 @@
 package xpasses
 
 import (
-	"github.com/bflad/tfproviderlint/xpasses/XAT001"
-	"github.com/bflad/tfproviderlint/xpasses/XR001"
-	"github.com/bflad/tfproviderlint/xpasses/XR002"
-	"github.com/bflad/tfproviderlint/xpasses/XR003"
-	"github.com/bflad/tfproviderlint/xpasses/XR004"
-	"github.com/bflad/tfproviderlint/xpasses/XR005"
-	"github.com/bflad/tfproviderlint/xpasses/XR006"
-	"github.com/bflad/tfproviderlint/xpasses/XR007"
-	"github.com/bflad/tfproviderlint/xpasses/XR008"
-	"github.com/bflad/tfproviderlint/xpasses/XS001"
-	"github.com/bflad/tfproviderlint/xpasses/XS002"
+	"github.com/jfrappier/tfsprout/xpasses/XAT001"
+	"github.com/jfrappier/tfsprout/xpasses/XR001"
+	"github.com/jfrappier/tfsprout/xpasses/XR002"
+	"github.com/jfrappier/tfsprout/xpasses/XR003"
+	"github.com/jfrappier/tfsprout/xpasses/XR004"
+	"github.com/jfrappier/tfsprout/xpasses/XR005"
+	"github.com/jfrappier/tfsprout/xpasses/XR006"
+	"github.com/jfrappier/tfsprout/xpasses/XR007"
+	"github.com/jfrappier/tfsprout/xpasses/XR008"
+	"github.com/jfrappier/tfsprout/xpasses/XS001"
+	"github.com/jfrappier/tfsprout/xpasses/XS002"
 	"golang.org/x/tools/go/analysis"
 )
 
