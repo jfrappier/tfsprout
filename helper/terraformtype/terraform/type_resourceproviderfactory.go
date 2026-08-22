@@ -10,7 +10,7 @@ const (
 
 // IsTypeResourceProviderFactory returns if the type is ResourceProviderFactory from the terraform package
 func IsTypeResourceProviderFactory(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameResourceProviderFactory)
 	case *types.Pointer:

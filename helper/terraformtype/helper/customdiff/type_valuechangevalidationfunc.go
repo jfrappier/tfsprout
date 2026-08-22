@@ -45,7 +45,7 @@ func IsFuncTypeValueChangeValidationFunc(node ast.Node, info *types.Info) bool {
 
 // IsTypeValueChangeValidationFunc returns if the type is ValueChangeValidationFunc from the customdiff package
 func IsTypeValueChangeValidationFunc(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameValueChangeValidationFunc)
 	case *types.Pointer:

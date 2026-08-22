@@ -45,7 +45,7 @@ func IsFuncTypeStateUpgradeFunc(node ast.Node, info *types.Info) bool {
 
 // IsTypeStateUpgradeFunc returns if the type is StateUpgradeFunc from the schema package
 func IsTypeStateUpgradeFunc(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameStateUpgradeFunc)
 	case *types.Pointer:

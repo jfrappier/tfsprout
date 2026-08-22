@@ -65,7 +65,7 @@ func (info *TestStepInfo) DeclaresField(fieldName string) bool {
 
 // IsTypeTestStep returns if the type is TestStep from the helper/schema package
 func IsTypeTestStep(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameTestStep)
 	case *types.Pointer:

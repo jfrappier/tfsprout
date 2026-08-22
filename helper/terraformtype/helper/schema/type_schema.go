@@ -297,7 +297,7 @@ func GetSchemaMapSchemas(cl *ast.CompositeLit) []*ast.CompositeLit {
 
 // IsTypeSchema returns if the type is Schema from the helper/schema package
 func IsTypeSchema(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameSchema)
 	case *types.Pointer:
@@ -311,7 +311,7 @@ func IsTypeSchema(t types.Type) bool {
 func IsValueType(e ast.Expr, info *types.Info) bool {
 	switch e := e.(type) {
 	case *ast.SelectorExpr:
-		switch t := info.TypeOf(e).(type) {
+		switch t := types.Unalias(info.TypeOf(e)).(type) {
 		case *types.Named:
 			return IsNamedType(t, TypeNameValueType)
 		default:
@@ -344,7 +344,7 @@ func ValueType(e ast.Expr, info *types.Info) valueType {
 // IsTypeSet returns if the type is Set from the helper/schema package
 // Use IsTypeSchemaFieldType for verifying Type: schema.TypeSet ValueType
 func IsTypeSet(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameSet)
 	case *types.Pointer:

@@ -10,7 +10,7 @@ const (
 
 // IsTypeResourceData returns if the type is ResourceData from the helper/schema package
 func IsTypeResourceData(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameResourceData)
 	case *types.Pointer:
