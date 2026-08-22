@@ -3,7 +3,7 @@ package AT004_test
 import (
 	"testing"
 
-	"github.com/bflad/tfproviderlint/passes/AT004"
+	"github.com/jfrappier/tfsprout/passes/AT004"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

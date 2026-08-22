@@ -1,5 +1,5 @@
 FROM golang:1.22-bookworm
 WORKDIR /src
-COPY tfproviderlint /usr/bin/tfproviderlint
-ENTRYPOINT ["/usr/bin/tfproviderlint"]
+COPY tfsprout /usr/bin/tfsprout
+ENTRYPOINT ["/usr/bin/tfsprout"]
 CMD ["./..."]

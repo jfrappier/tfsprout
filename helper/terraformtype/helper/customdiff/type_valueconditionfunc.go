@@ -5,7 +5,7 @@ import (
 	"go/token"
 	"go/types"
 
-	"github.com/bflad/tfproviderlint/helper/astutils"
+	"github.com/jfrappier/tfsprout/helper/astutils"
 )
 
 const (

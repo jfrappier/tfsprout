@@ -3,7 +3,7 @@ package analysisutils
 import (
 	"go/ast"
 
-	"github.com/bflad/tfproviderlint/helper/astutils"
+	"github.com/jfrappier/tfsprout/helper/astutils"
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"golang.org/x/tools/go/ast/inspector"

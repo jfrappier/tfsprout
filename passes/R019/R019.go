@@ -6,8 +6,8 @@ import (
 
 	"golang.org/x/tools/go/analysis"
 
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/resourcedatahaschangescallexpr"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/resourcedatahaschangescallexpr"
 )
 
 const Doc = `check for (*schema.ResourceData).HasChanges() calls with many arguments

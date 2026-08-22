@@ -5,9 +5,9 @@ import (
 
 	"golang.org/x/tools/go/analysis"
 
-	"github.com/bflad/tfproviderlint/helper/astutils"
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/helper/validation/stringmatchcallexpr"
+	"github.com/jfrappier/tfsprout/helper/astutils"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/helper/validation/stringmatchcallexpr"
 )
 
 const Doc = `check for validation.StringMatch() calls with empty message argument

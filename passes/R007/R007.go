@@ -1,10 +1,10 @@
 package R007
 
 import (
-	"github.com/bflad/tfproviderlint/helper/analysisutils"
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/schema"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/resourcedatapartialcallexpr"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/resourcedatapartialselectorexpr"
+	"github.com/jfrappier/tfsprout/helper/analysisutils"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/resourcedatapartialcallexpr"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/resourcedatapartialselectorexpr"
 )
 
 var Analyzer = analysisutils.DeprecatedReceiverMethodSelectorExprAnalyzer(

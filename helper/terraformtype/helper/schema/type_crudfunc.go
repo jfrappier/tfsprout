@@ -5,8 +5,8 @@ import (
 	"go/token"
 	"go/types"
 
-	"github.com/bflad/tfproviderlint/helper/astutils"
-	"github.com/bflad/tfproviderlint/helper/terraformtype/diag"
+	"github.com/jfrappier/tfsprout/helper/astutils"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/diag"
 )
 
 // IsFuncTypeCRUDFunc returns true if the FuncType matches expected parameters and results types

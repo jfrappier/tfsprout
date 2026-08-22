@@ -8,9 +8,9 @@ import (
 
 	"golang.org/x/tools/go/analysis"
 
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/schema"
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/resourcedatasetcallexpr"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/resourcedatasetcallexpr"
 )
 
 const Doc = `check for ResourceData.Set() calls using incompatible value types

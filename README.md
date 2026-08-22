@@ -4,56 +4,44 @@ Static analysis libraries and tooling for [Terraform Provider](https://www.terra
 
 <p align="center"><img width="250" height="250" alt="image" src="https://github.com/user-attachments/assets/8d14fa27-9636-4d45-9fa1-390cc33dd77a" /></p>
 
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/bflad/tfproviderlint)](https://pkg.go.dev/github.com/bflad/tfproviderlint)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/jfrappier/tfsprout)](https://pkg.go.dev/github.com/jfrappier/tfsprout)
 
 ## Install
 
 ### Local Install
 
-Release binaries are available in the [Releases](https://github.com/bflad/tfproviderlint/releases) section.
+Release binaries are available in the [Releases](https://github.com/jfrappier/tfsprout/releases) section.
 
 To instead use Go to install into your `$GOBIN` directory (e.g. `$GOPATH/bin`):
 
 ```shell
-go install github.com/bflad/tfproviderlint/cmd/tfproviderlint@latest
+go install github.com/jfrappier/tfsprout/cmd/tfsprout@latest
 ```
 
 If you wish to install the command which includes all linting checks, including [Extra Lint Checks](#extra-lint-checks):
 
 ```shell
-go install github.com/bflad/tfproviderlint/cmd/tfproviderlintx@latest
-```
-
-### Docker Install
-
-```shell
-docker pull bflad/tfproviderlint
-```
-
-### Homebrew Install
-
-```shell
-brew install bflad/tap/tfproviderlint
+go install github.com/jfrappier/tfsprout/cmd/tfsproutx@latest
 ```
 
 ## Usage
 
-The `tfproviderlint` and `tfproviderlintx` tools operate similarly except for which checks are available. Additional information about usage and configuration options can be found by passing the `help` argument:
+The `tfsprout` and `tfsproutx` tools operate similarly except for which checks are available. Additional information about usage and configuration options can be found by passing the `help` argument:
 
 ```shell
-tfproviderlint help
+tfsprout help
 ```
 
 To enable only specific checks, they can be passed in as flags:
 
 ```shell
-tfproviderlint -AT001
+tfsprout -AT001
 ```
 
 To enable all checks, but disable specific checks, they can be passed in as flags set to `false`:
 
 ```shell
-tfproviderlint -AT001=false
+tfsprout -AT001=false
 ```
 
 ### Local Usage
@@ -61,36 +49,28 @@ tfproviderlint -AT001=false
 To report issues, change into the directory of the Terraform Provider code and run:
 
 ```shell
-tfproviderlint ./...
+tfsprout ./...
 ```
 
 To apply automated fixes for checks that support them, change into the directory of the Terraform Provider code and run:
 
 ```shell
-tfproviderlint -fix ./...
+tfsprout -fix ./...
 ```
 
 It is also possible to run via [`go vet`](https://golang.org/cmd/vet/):
 
 ```shell
-go vet -vettool $(which tfproviderlint) ./...
-```
-
-### Docker Usage
-
-Change into the directory of the Terraform Provider code and run:
-
-```shell
-docker run -v $(pwd):/src bflad/tfproviderlint ./...
+go vet -vettool $(which tfsprout) ./...
 ```
 
 ### GitHub Action Usage
 
-A [GitHub Action](https://github.com/features/actions) is available: [tfproviderlint-github-action](https://github.com/bflad/tfproviderlint-github-action)
+A [GitHub Action](https://github.com/features/actions) is available: [tfsprout-github-action](https://github.com/jfrappier/tfsprout-github-action)
 
 ## Standard Lint Checks
 
-Standard lint checks are enabled by default in the `tfproviderlint` tool. Opt-in checks can be found in the [Extra Lint Checks section](#extra-lint-checks). For additional information about each check, you can run `tfproviderlint help NAME`.
+Standard lint checks are enabled by default in the `tfsprout` tool. Opt-in checks can be found in the [Extra Lint Checks section](#extra-lint-checks). For additional information about each check, you can run `tfsprout help NAME`.
 
 ### Standard Acceptance Test Checks
 
@@ -196,7 +176,7 @@ Standard lint checks are enabled by default in the `tfproviderlint` tool. Opt-in
 
 ## Extra Lint Checks
 
-Extra lint checks are not included in the `tfproviderlint` tool and must be accessed via the `tfproviderlintx` tool or [added to a custom lint tool](#implementing-a-custom-lint-tool). Generally these represent advanced Terraform Plugin SDK functionality that is not appropriate for all Terraform Providers.
+Extra lint checks are not included in the `tfsprout` tool and must be accessed via the `tfsproutx` tool or [added to a custom lint tool](#implementing-a-custom-lint-tool). Generally these represent advanced Terraform Plugin SDK functionality that is not appropriate for all Terraform Providers.
 
 ### Extra Acceptance Test Checks
 
@@ -265,7 +245,7 @@ To setup the expected file content verification, the testing expects a file suff
 
 ### Implementing a Custom Lint Tool
 
-The `go/analysis` framework and this codebase are designed for flexibility. You may wish to permanently disable certain default checks or even implement your own provider-specific checks. An example of how to incorporate all default and extra checks in a CLI command can be found in `cmd/tfproviderlintx`. To permanently exclude checks, each desired `Analyzer` must be individually included, similar to how `AllChecks()` is built in `passes/checks.go`.
+The `go/analysis` framework and this codebase are designed for flexibility. You may wish to permanently disable certain default checks or even implement your own provider-specific checks. An example of how to incorporate all default and extra checks in a CLI command can be found in `cmd/tfsproutx`. To permanently exclude checks, each desired `Analyzer` must be individually included, similar to how `AllChecks()` is built in `passes/checks.go`.
 
 The `passes` directory also includes the underlying `Analyzer` which iteratively gather AST-based information about the Terraform Provider code being analyzed. For example, `passes/helper/resource/retryfuncinfo` returns information from all named and anonymous declarations of `helper/resource.RetryFunc()`.
 
@@ -284,5 +264,5 @@ go test ./...
 ### Local Install Testing
 
 ```shell
-go install ./cmd/tfproviderlint
+go install ./cmd/tfsprout
 ```

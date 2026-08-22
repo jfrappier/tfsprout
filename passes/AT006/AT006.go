@@ -5,9 +5,9 @@ package AT006
 import (
 	"go/ast"
 
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/resource"
-	"github.com/bflad/tfproviderlint/passes/commentignore"
-	"github.com/bflad/tfproviderlint/passes/testaccfuncdecl"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/resource"
+	"github.com/jfrappier/tfsprout/passes/commentignore"
+	"github.com/jfrappier/tfsprout/passes/testaccfuncdecl"
 	"golang.org/x/tools/go/analysis"
 )
 

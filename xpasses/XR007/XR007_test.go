@@ -3,7 +3,7 @@ package XR007_test
 import (
 	"testing"
 
-	"github.com/bflad/tfproviderlint/xpasses/XR007"
+	"github.com/jfrappier/tfsprout/xpasses/XR007"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

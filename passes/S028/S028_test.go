@@ -3,7 +3,7 @@ package S028_test
 import (
 	"testing"
 
-	"github.com/bflad/tfproviderlint/passes/S028"
+	"github.com/jfrappier/tfsprout/passes/S028"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

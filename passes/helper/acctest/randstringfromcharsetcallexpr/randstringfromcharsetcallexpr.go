@@ -1,8 +1,8 @@
 package randstringfromcharsetcallexpr
 
 import (
-	"github.com/bflad/tfproviderlint/helper/analysisutils"
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/acctest"
+	"github.com/jfrappier/tfsprout/helper/analysisutils"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/acctest"
 )
 
 var Analyzer = analysisutils.FunctionCallExprAnalyzer(

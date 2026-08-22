@@ -3,7 +3,7 @@ package XS002_test
 import (
 	"testing"
 
-	"github.com/bflad/tfproviderlint/xpasses/XS002"
+	"github.com/jfrappier/tfsprout/xpasses/XS002"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

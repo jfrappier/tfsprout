@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/bflad/tfproviderlint/passes/testfuncdecl"
+	"github.com/jfrappier/tfsprout/passes/testfuncdecl"
 	"golang.org/x/tools/go/analysis"
 )
 

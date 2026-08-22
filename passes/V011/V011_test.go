@@ -3,7 +3,7 @@ package V011_test
 import (
 	"testing"
 
-	"github.com/bflad/tfproviderlint/passes/V011"
+	"github.com/jfrappier/tfsprout/passes/V011"
 	"golang.org/x/tools/go/analysis/analysistest"
 )
 

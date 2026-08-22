@@ -5,8 +5,8 @@ import (
 	"go/token"
 	"go/types"
 
-	"github.com/bflad/tfproviderlint/helper/astutils"
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/schema"
+	"github.com/jfrappier/tfsprout/helper/astutils"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
 )
 
 const (

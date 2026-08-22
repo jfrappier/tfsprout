@@ -1,4 +1,4 @@
-module github.com/bflad/tfproviderlint
+module github.com/jfrappier/tfsprout
 
 go 1.22.0
 

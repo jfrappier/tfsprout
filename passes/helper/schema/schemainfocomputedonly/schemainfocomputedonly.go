@@ -3,8 +3,8 @@ package schemainfocomputedonly
 import (
 	"reflect"
 
-	"github.com/bflad/tfproviderlint/helper/terraformtype/helper/schema"
-	"github.com/bflad/tfproviderlint/passes/helper/schema/schemainfo"
+	"github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
+	"github.com/jfrappier/tfsprout/passes/helper/schema/schemainfo"
 	"golang.org/x/tools/go/analysis"
 )
 
