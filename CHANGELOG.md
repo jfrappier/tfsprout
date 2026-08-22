@@ -1,3 +1,9 @@
+# v0.1.1 (Unreleased)
+
+BUG FIXES
+
+* Fix `internal error: package "context" without types was imported from ...` crash when analyzing providers under Go 1.27. Upgraded `golang.org/x/tools` from `v0.30.0` to `v0.49.0`, whose reworked `go/packages` loader falls back to export data instead of a hard `log.Fatalf` when a dependency package arrives without complete type information. The minimum Go version (`go` directive) is now `1.25.0`, as required by the newer `golang.org/x/tools`.
+
 # v0.1.0
 
 NOTES

@@ -7,6 +7,8 @@ Static analysis libraries and tooling for [Terraform Provider](https://www.terra
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/jfrappier/tfsprout)](https://pkg.go.dev/github.com/jfrappier/tfsprout)
 
 > **Note:** tfsprout is a fork of [`tfproviderlint`](https://github.com/bflad/tfproviderlint). **v0.1.0 is a drop-in replacement** — the lint checks and their behavior are unchanged and there are no new features. Only the project name, command names (`tfproviderlint` -> `tfsprout`, `tfproviderlintx` -> `tfsproutx`), and Go module path differ.
+>
+> **v0.1.1** fixes the `internal error: package "context" without types was imported from ...` crash that occurs when analyzing providers under **Go 1.27**. See the [CHANGELOG](CHANGELOG.md) for details.
 
 ## Install
 
@@ -219,7 +221,7 @@ Helpful tooling for development:
 
 This project follows the [Go support policy](https://golang.org/doc/devel/release.html#policy) for versions. The two latest major releases of Go are supported by the project.
 
-Currently, that means Go **1.22** or later must be used when including this project as a dependency.
+Currently, that means Go **1.25** or later must be used when including this project as a dependency. (The `golang.org/x/tools` release that adds Go 1.27 support requires Go 1.25 as a minimum.)
 
 ### Adding an Analyzer
 
