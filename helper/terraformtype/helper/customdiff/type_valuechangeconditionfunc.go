@@ -45,7 +45,7 @@ func IsFuncTypeValueChangeConditionFunc(node ast.Node, info *types.Info) bool {
 
 // IsTypeValueChangeConditionFunc returns if the type is ValueChangeConditionFunc from the customdiff package
 func IsTypeValueChangeConditionFunc(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameValueChangeConditionFunc)
 	case *types.Pointer:

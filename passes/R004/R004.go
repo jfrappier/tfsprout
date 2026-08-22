@@ -55,7 +55,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 }
 
 func isAllowedType(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	default:
 		return false
 	case *types.Basic:

@@ -56,7 +56,7 @@ func (info *TestCaseInfo) DeclaresField(fieldName string) bool {
 
 // IsTypeTestCase returns if the type is TestCase from the helper/schema package
 func IsTypeTestCase(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameTestCase)
 	case *types.Pointer:

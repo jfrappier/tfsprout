@@ -25,7 +25,7 @@ func IsFuncTypeCustomizeDiffFunc(node ast.Node, info *types.Info) bool {
 
 // IsTypeCustomizeDiffFunc returns if the type is CustomizeDiffFunc from the customdiff package
 func IsTypeCustomizeDiffFunc(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameCustomizeDiffFunc)
 	case *types.Pointer:

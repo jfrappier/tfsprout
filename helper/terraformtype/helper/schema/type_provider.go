@@ -15,7 +15,7 @@ const (
 
 // IsTypeProvider returns if the type is Provider from the schema package
 func IsTypeProvider(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameProvider)
 	case *types.Pointer:

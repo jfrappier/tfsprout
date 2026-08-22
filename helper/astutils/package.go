@@ -92,7 +92,7 @@ func IsModulePackageNamedType(t *types.Named, module string, packageSuffix strin
 // This function automatically handles Go module versioning in import paths.
 // To explicitly check an import path, use IsPackageType instead.
 func IsModulePackageType(t types.Type, module string, packageSuffix string, typeName string) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsModulePackageNamedType(t, module, packageSuffix, typeName)
 	case *types.Pointer:
@@ -187,7 +187,7 @@ func IsPackageNamedType(t *types.Named, packageSuffix string, typeName string) b
 // This function checks an explicit import path. To allow any Go module version
 // in the import path, use IsModulePackageType instead.
 func IsPackageType(t types.Type, packageSuffix string, typeName string) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsPackageNamedType(t, packageSuffix, typeName)
 	case *types.Pointer:
@@ -281,7 +281,7 @@ func IsStdlibPackageNamedType(t *types.Named, packagePath string, typeName strin
 // This function checks an explicit import path without vendoring. To allow
 // vendored paths, use IsPackageType instead.
 func IsStdlibPackageType(t types.Type, packagePath string, typeName string) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsStdlibPackageNamedType(t, packagePath, typeName)
 	case *types.Pointer:

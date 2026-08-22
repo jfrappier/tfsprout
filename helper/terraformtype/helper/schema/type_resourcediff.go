@@ -10,7 +10,7 @@ const (
 
 // IsTypeResourceDiff returns if the type is ResourceDiff from the schema package
 func IsTypeResourceDiff(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameResourceDiff)
 	case *types.Pointer:

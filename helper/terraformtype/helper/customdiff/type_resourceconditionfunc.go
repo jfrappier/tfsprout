@@ -42,7 +42,7 @@ func IsFuncTypeResourceConditionFunc(node ast.Node, info *types.Info) bool {
 
 // IsTypeResourceConditionFunc returns if the type is ResourceConditionFunc from the customdiff package
 func IsTypeResourceConditionFunc(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameResourceConditionFunc)
 	case *types.Pointer:

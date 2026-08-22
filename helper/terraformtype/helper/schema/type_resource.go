@@ -196,7 +196,7 @@ func IsMapStringResource(cl *ast.CompositeLit, info *types.Info) bool {
 
 // IsTypeResource returns if the type is Resource from the helper/schema package
 func IsTypeResource(t types.Type) bool {
-	switch t := t.(type) {
+	switch t := types.Unalias(t).(type) {
 	case *types.Named:
 		return IsNamedType(t, TypeNameResource)
 	case *types.Pointer:
