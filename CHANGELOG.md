@@ -8,6 +8,10 @@ FEATURES
 
 * **New Check:** `S038`: check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured. The two are mutually exclusive and configuring both fails provider schema validation with `ValidateFunc and ValidateDiagFunc cannot both be set`.
 
+BUG FIXES
+
+* `S013`: no longer reports resource identity schema attributes. Identity schemas are declared as an ordinary `map[string]*schema.Schema` but configure `RequiredForImport`/`OptionalForImport` in place of `Computed`, `Optional`, or `Required`, so every attribute of every identity schema was reported. The bug is inherited from `tfproviderlint` (see [bflad/tfproviderlint#340](https://github.com/bflad/tfproviderlint/issues/340)) and affects any provider adopting Terraform 1.12 resource identity. Verified against `terraform-provider-scaleway`, where it accounted for 21 of the 22 findings tfsprout reported.
+
 ENHANCEMENTS
 
 * `S009`: now also reports `ValidateDiagFunc` configured on a `TypeList` or `TypeSet` schema, not just `ValidateFunc`. The Terraform Plugin SDK rejects both identically (`ValidateFunc and ValidateDiagFunc are not yet supported on lists or sets`), so they are one rule and share the `S009` ID. Existing `//lintignore:S009` comments continue to suppress both, and no previously reported finding has changed position — only the report message, which now names both fields.

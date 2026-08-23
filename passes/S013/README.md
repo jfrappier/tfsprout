@@ -43,6 +43,27 @@ map[string]*schema.Schema{
 }
 ```
 
+## Resource Identity Schemas
+
+Resource identity schemas are declared as an ordinary `map[string]*schema.Schema`
+but configure `RequiredForImport` or `OptionalForImport` in place of `Computed`,
+`Optional`, or `Required`. S013 skips any attribute declaring either field, so
+identity schemas are not reported:
+
+```go
+&schema.ResourceIdentity{
+    Version: 0,
+    SchemaFunc: func() map[string]*schema.Schema {
+        return map[string]*schema.Schema{
+            "id": {
+                Type:              schema.TypeString,
+                RequiredForImport: true,
+            },
+        }
+    },
+}
+```
+
 ## Ignoring Reports
 
 Singular reports can be ignored by adding a `//lintignore:S013` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
