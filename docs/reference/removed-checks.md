@@ -8,15 +8,15 @@ Nine check IDs still exist but no longer report anything. They were removed when
 
 | Check | Detected | Replacement |
 |---|---|---|
-| [R008](../../passes/R008) | Deprecated `(schema.ResourceData).SetPartial()` | None — delete the call |
-| [S034](../../passes/S034) | `Schema` configuring `PromoteSingle` | None — invalid after Terraform 0.12, delete the field |
-| [V002](../../passes/V002) | `validation.CIDRNetwork()` | `validation.IsCIDRNetwork()` |
-| [V003](../../passes/V003) | `validation.IPRange()` | `validation.IsIPv4Range` |
-| [V004](../../passes/V004) | `validation.SingleIP()` | `validation.IsIPAddress` |
-| [V005](../../passes/V005) | `validation.ValidateJsonString` | `validation.StringIsJSON` |
-| [V006](../../passes/V006) | `validation.ValidateListUniqueStrings` | `validation.ListOfUniqueStrings` |
-| [V007](../../passes/V007) | `validation.ValidateRegexp` | `validation.StringIsValidRegExp` |
-| [V008](../../passes/V008) | `validation.ValidateRFC3339TimeString` | `validation.IsRFC3339Time` |
+| [R008](../checks/R008.md) | Deprecated `(schema.ResourceData).SetPartial()` | None — delete the call |
+| [S034](../checks/S034.md) | `Schema` configuring `PromoteSingle` | None — invalid after Terraform 0.12, delete the field |
+| [V002](../checks/V002.md) | `validation.CIDRNetwork()` | `validation.IsCIDRNetwork()` |
+| [V003](../checks/V003.md) | `validation.IPRange()` | `validation.IsIPv4Range` |
+| [V004](../checks/V004.md) | `validation.SingleIP()` | `validation.IsIPAddress` |
+| [V005](../checks/V005.md) | `validation.ValidateJsonString` | `validation.StringIsJSON` |
+| [V006](../checks/V006.md) | `validation.ValidateListUniqueStrings` | `validation.ListOfUniqueStrings` |
+| [V007](../checks/V007.md) | `validation.ValidateRegexp` | `validation.StringIsValidRegExp` |
+| [V008](../checks/V008.md) | `validation.ValidateRFC3339TimeString` | `validation.IsRFC3339Time` |
 
 Note that `IsIPv4Range`, `IsIPAddress`, `StringIsJSON`, `ListOfUniqueStrings`, `StringIsValidRegExp`, and `IsRFC3339Time` are **values, not calls** — write `ValidateFunc: validation.IsIPAddress`, without parentheses. `IsCIDRNetwork` is the exception and still takes arguments.
 

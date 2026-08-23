@@ -1,0 +1,118 @@
+site_name: tfsprout
+site_description: Static analysis for Terraform Provider source code.
+site_author: jfrappier
+site_url: https://jfrappier.github.io/tfsprout/
+
+repo_url: https://github.com/jfrappier/tfsprout
+repo_name: GitHub
+edit_uri: edit/main/docs/
+
+copyright: Mozilla Public License 2.0
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: cinder
+  custom_dir: docs-theme/overrides
+  # Syntax highlighting is done server-side by Pygments (see the
+  # pymdownx.highlight extension below) rather than by the theme's bundled
+  # highlight.js. Pygments emits classed markup, which is what lets extra.css
+  # restyle code blocks for the dark theme; a highlight.js CDN stylesheet is
+  # fixed at build time and cannot follow a runtime theme switch.
+  highlightjs: false
+  # Previous/Next crowd the navbar out to a second row once the section
+  # dropdowns and the theme toggle are in it, and neither is a useful way
+  # to move through reference documentation.
+  disable_nav_previous_next: true
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+
+# The per-check pages under checks/ are generated at build time by
+# docs-theme/hooks.py from passes/*/README.md and xpasses/*/README.md. There are 93
+# of them, so they are deliberately kept out of the navbar -- they are reached
+# from the check index, from search, and from the category sidebar that
+# overrides/toc.html renders on every check page.
+not_in_nav: |
+  checks/
+
+hooks:
+  - docs-theme/hooks.py
+
+# `mkdocs serve` watches docs_dir and mkdocs.yml only. These are the other
+# inputs to a build, so that editing a check README or a template rebuilds the
+# page instead of silently serving a stale one.
+watch:
+  - docs-theme
+  - passes
+  - xpasses
+  - CHANGELOG.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Link to this section
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      use_pygments: true
+      anchor_linenums: true
+      line_spans: __span
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tilde
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+nav:
+  - Home: index.md
+  - Get started:
+      - What is tfsprout: what-is-tfsprout.md
+      - Install: install.md
+      - From tfproviderlint: migrating-from-tfproviderlint.md
+  - Usage:
+      - Running tfsprout: usage/running-locally.md
+      - Ignoring reports: usage/ignoring-reports.md
+      - Automated fixes: usage/automated-fixes.md
+      - CI integration: usage/ci-integration.md
+      - Troubleshooting: usage/troubleshooting.md
+  - Concepts:
+      - How tfsprout works: concepts/how-it-works.md
+      - Checks and categories: concepts/checks-and-categories.md
+      - Standard vs extra: concepts/standard-vs-extra.md
+      - Scope and SDK support: concepts/scope-and-sdk-support.md
+  - Checks: reference/checks.md
+  - Reference:
+      - CLI reference: reference/cli.md
+      - Exit codes and output: reference/exit-codes-and-output.md
+      - Removed checks: reference/removed-checks.md
+      - Changelog: changelog.md
+  - Contributing:
+      - Building from source: contributing/building.md
+      - Adding an analyzer: contributing/adding-an-analyzer.md
+      - Testing: contributing/testing.md
+      - Custom lint tool: contributing/custom-lint-tool.md
+      - Releasing: contributing/releasing.md

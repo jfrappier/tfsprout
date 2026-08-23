@@ -82,6 +82,46 @@ git diff --exit-code -- go.mod go.sum
 
 Run both before opening a pull request.
 
+## Building the documentation site
+
+The site at <https://jfrappier.github.io/tfsprout/> is built with
+[MkDocs](https://www.mkdocs.org/) and the
+[Cinder](https://github.com/chrissimpkins/cinder) theme. Every dependency is
+pinned in `requirements-docs.txt`:
+
+```shell
+python3 -m venv .venv
+.venv/bin/pip install -r requirements-docs.txt
+.venv/bin/mkdocs serve
+```
+
+That serves the site on <http://127.0.0.1:8000> and rebuilds on save. CI builds
+with `--strict`, which turns broken internal links and unresolved anchors into
+errors, so run it that way before opening a pull request:
+
+```shell
+.venv/bin/mkdocs build --strict
+```
+
+### What is generated rather than written
+
+`docs-theme/hooks.py` builds two kinds of page at build time, so do not look for
+them in `docs/`:
+
+| Page | Built from |
+|---|---|
+| `checks/<ID>` | `passes/<ID>/README.md` or `xpasses/<ID>/README.md` |
+| `changelog` | `CHANGELOG.md` |
+
+The practical consequence is that a check's documentation lives beside its
+analyzer. Adding a check directory with a `README.md` is all it takes for the
+check to get a page, a sidebar entry, and a search index entry — see
+[Adding an analyzer](adding-an-analyzer.md).
+
+Check READMEs are read both on GitHub and on the site, so they use GitHub's
+`> [!NOTE]` alert syntax; the hook rewrites it into a MkDocs admonition when it
+builds the page.
+
 ## Next steps
 
 - [Adding an analyzer](adding-an-analyzer.md)

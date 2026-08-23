@@ -15,7 +15,7 @@ go install github.com/jfrappier/tfsprout/cmd/tfsprout@latest
 tfsprout -V
 ```
 
-The Go version that matters is the one running tfsprout, not the one in your provider's `go.mod`. If your CI image was upgraded to Go 1.27 and lint started failing without a code change, this is why. See the [CHANGELOG](../../CHANGELOG.md).
+The Go version that matters is the one running tfsprout, not the one in your provider's `go.mod`. If your CI image was upgraded to Go 1.27 and lint started failing without a code change, this is why. See the [CHANGELOG](../changelog.md).
 
 ## No output at all, exit code 0
 

@@ -51,7 +51,9 @@ That is the whole tool. Everything else is detail.
 
 ## Documentation
 
-Full documentation lives in [`docs/`](docs/README.md).
+**<https://jfrappier.github.io/tfsprout/>** — searchable, with a page per check.
+
+The same pages live in [`docs/`](docs/) if you would rather read them here.
 
 **Getting started** — [What is tfsprout](docs/what-is-tfsprout.md) · [Migrating from tfproviderlint](docs/migrating-from-tfproviderlint.md) · [Install](docs/install.md)
 
@@ -65,7 +67,7 @@ Full documentation lives in [`docs/`](docs/README.md).
 
 ## Checks
 
-84 active checks in four categories. The full list, with a page per check, is in the [check index](docs/reference/checks.md).
+84 active checks in four categories. The full list, with a page per check, is in the [check index](docs/reference/checks.md) — or browse them at <https://jfrappier.github.io/tfsprout/reference/checks/>.
 
 | Prefix | Category | Count |
 |---|---|---|
