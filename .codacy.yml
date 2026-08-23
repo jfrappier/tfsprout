@@ -1,0 +1,5 @@
+---
+# `site/` is the MkDocs build output. It is gitignored, but exclude it here too
+# so that a local build left lying around is never analysed as source.
+exclude_paths:
+  - 'site/**'

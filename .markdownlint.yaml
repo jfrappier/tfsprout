@@ -1,0 +1,25 @@
+# markdownlint configuration.
+#
+# The rules below are disabled because they conflict with how MkDocs renders
+# this documentation, not because the findings are unwelcome. Everything else
+# markdownlint checks stays on.
+
+# MD033/no-inline-html -- the landing page builds its hero and card grid out of
+# div/span/p/a/img, and the generated check pages emit a badge row as HTML.
+# Both rely on the md_in_html extension and have no pure-Markdown equivalent.
+MD033: false
+
+# MD046/code-block-style -- Python-Markdown's admonition syntax requires its
+# body to be indented four spaces. markdownlint reads that as an indented code
+# block and asks for fences, which would break the admonition.
+MD046: false
+
+# MD025/single-title -- pages carry a `title:` in YAML front matter for the nav
+# and the browser tab, which markdownlint counts as a first top-level heading,
+# making the page's own `# Heading` look like a duplicate. Clearing the option
+# stops front matter counting; the rule itself stays on.
+MD025:
+  front_matter_title: ""
+
+# Prose is written to a comfortable width rather than a hard column limit.
+MD013: false
