@@ -4,3 +4,4 @@ RELEASE-NOTES.md
 site/
 .venv/
 __pycache__/
+.codacy/
