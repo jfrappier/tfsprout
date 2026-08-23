@@ -1,6 +1,6 @@
 # R001
 
-The R001 analyzer reports a complex key argument for a [`Set()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Set)
+The R001 analyzer reports a complex key argument for a [`Set()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Set)
 call. It is preferred to explicitly use a string literal as the key argument.
 
 ## Flagged Code
@@ -23,7 +23,7 @@ d.Set("example2", "value2")
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R001` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R001` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 keys := []string{"example1", "example2"}

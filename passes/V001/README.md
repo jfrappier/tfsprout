@@ -1,7 +1,7 @@
 # V001
 
 The V001 analyzer reports when custom SchemaValidateFunc declarations can be
-replaced with [validation.StringMatch()](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#StringMatch) or [validation.StringDoesNotMatch()](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#StringDoesNotMatch).
+replaced with [validation.StringMatch()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#StringMatch) or [validation.StringDoesNotMatch()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation#StringDoesNotMatch).
 
 ## Flagged Code
 
@@ -34,7 +34,7 @@ func validateExampleThing() schema.SchemaValidateFunc {
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:V001` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:V001` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:V001

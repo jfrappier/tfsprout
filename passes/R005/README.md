@@ -1,6 +1,6 @@
 # R005
 
-The R005 analyzer reports when multiple [`HasChange()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.HasChange) calls in a conditional can be combined into a single [`HasChanges()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.HasChanges) call.
+The R005 analyzer reports when multiple [`HasChange()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.HasChange) calls in a conditional can be combined into a single [`HasChanges()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.HasChanges) call.
 
 ## Flagged Code
 
@@ -20,7 +20,7 @@ if d.HasChanges("attr1", "attr2") {
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R005` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R005` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:R005

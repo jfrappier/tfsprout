@@ -44,7 +44,7 @@ func resourceExampleThingDelete(ctx context.Context, d *schema.ResourceData, met
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R014` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R014` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:R014

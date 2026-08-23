@@ -35,7 +35,7 @@ The XR006 analyzer reports extraneous `Timeouts` fields in resources where the c
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:XR006` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:XR006` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:XR006

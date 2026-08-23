@@ -4,7 +4,8 @@ The XAT001 analyzer reports uses of `TestCase` which do not define an `ErrorChec
 
 ## Flagged Code
 
-NOTE: This analyzer does not differentiate between resource acceptance tests and data source acceptance tests. This is by design to ensure authors add the equivalent resource `CheckDestroy` function to data source testing, if available.
+> [!NOTE]
+> This analyzer does not differentiate between resource acceptance tests and data source acceptance tests. This is by design to ensure authors add the equivalent resource `CheckDestroy` function to data source testing, if available.
 
 ```go
 func TestAccExampleThing_Attr1(t *testing.T) {
@@ -47,7 +48,7 @@ func TestAccExampleThing_Attr1(t *testing.T) {
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:XAT001` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:XAT001` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 func TestAccExampleThing_Attr1(t *testing.T) {

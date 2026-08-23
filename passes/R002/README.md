@@ -1,7 +1,7 @@
 # R002
 
 The R002 analyzer reports likely extraneous uses of
-star (`*`) dereferences for a [`Set()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Set) call. The `Set()` function automatically
+star (`*`) dereferences for a [`Set()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Set) call. The `Set()` function automatically
 handles pointers and `*` dereferences without `nil` checks can panic.
 
 ## Flagged Code
@@ -22,7 +22,7 @@ d.Set("example", stringPtr)
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R002` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R002` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 var stringPtr *string

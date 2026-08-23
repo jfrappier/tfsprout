@@ -1,6 +1,6 @@
 # XR001
 
-The XR001 analyzer reports usage of [`GetOkExists()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.GetOkExists) calls, which generally do not work as expected. Usage should be moved to standard `Get()` and `GetOk()` calls.
+The XR001 analyzer reports usage of [`GetOkExists()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.GetOkExists) calls, which generally do not work as expected. Usage should be moved to standard `Get()` and `GetOk()` calls.
 
 ## Flagged Code
 
@@ -20,7 +20,7 @@ d.GetOk("example")
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:XR001` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:XR001` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:XR001
