@@ -3,54 +3,54 @@
   a persisted light/dark toggle, copy buttons on code blocks, and a filter
   over the check catalogue in the sidebar.
 
-  The initial theme is applied by an inline script in docs-theme/overrides/main.html
-  so that it lands before first paint; this file only handles the toggle.
-*/
-(function () {
-    'use strict';
+  The initial theme is applied by an inline script in
+  docs-theme/overrides/main.html so that it lands before first paint; this file
+  only handles the toggle.
 
-    var STORAGE_KEY = 'tfsprout-theme';
+  Wrapped in an IIFE so nothing here reaches the global scope.
+*/
+(() => {
+    const STORAGE_KEY = 'tfsprout-theme';
 
     // ---------------------------------------------------------- theme toggle
 
-    function initThemeToggle() {
-        var toggle = document.getElementById('theme-toggle');
+    const initThemeToggle = () => {
+        const toggle = document.getElementById('theme-toggle');
         if (!toggle) return;
 
-        toggle.addEventListener('click', function (event) {
+        toggle.addEventListener('click', (event) => {
             event.preventDefault();
-            var root = document.documentElement;
-            var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            const root = document.documentElement;
+            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             root.setAttribute('data-theme', next);
             try {
                 localStorage.setItem(STORAGE_KEY, next);
-            } catch (e) {
+            } catch {
                 /* private browsing: the choice just will not persist */
             }
         });
-    }
+    };
 
     // ----------------------------------------------------------- copy button
 
-    function initCopyButtons() {
+    const initCopyButtons = () => {
         if (!navigator.clipboard) return;
 
-        var blocks = document.querySelectorAll('.highlight');
-        Array.prototype.forEach.call(blocks, function (block) {
-            var code = block.querySelector('pre');
-            if (!code) return;
+        for (const block of document.querySelectorAll('.highlight')) {
+            const code = block.querySelector('pre');
+            if (!code) continue;
 
-            var button = document.createElement('button');
+            const button = document.createElement('button');
             button.type = 'button';
             button.className = 'copy-button';
             button.textContent = 'Copy';
             button.setAttribute('aria-label', 'Copy this code to the clipboard');
 
-            button.addEventListener('click', function () {
-                navigator.clipboard.writeText(code.innerText).then(function () {
+            button.addEventListener('click', () => {
+                navigator.clipboard.writeText(code.innerText).then(() => {
                     button.textContent = 'Copied';
                     button.classList.add('copied');
-                    setTimeout(function () {
+                    setTimeout(() => {
                         button.textContent = 'Copy';
                         button.classList.remove('copied');
                     }, 1600);
@@ -58,61 +58,64 @@
             });
 
             block.appendChild(button);
-        });
-    }
+        }
+    };
 
     // ---------------------------------------------------------- check filter
 
-    function initCheckFilter() {
-        var input = document.getElementById('check-filter-input');
+    const initCheckFilter = () => {
+        const input = document.getElementById('check-filter-input');
         if (!input) return;
 
-        var items = document.querySelectorAll('.check-list .check-item');
-        var groups = document.querySelectorAll('.check-list .check-group');
-        var empty = document.querySelector('.check-list-empty');
+        const items = document.querySelectorAll('.check-list .check-item');
+        const groups = document.querySelectorAll('.check-list .check-group');
+        const empty = document.querySelector('.check-list-empty');
 
-        function apply() {
-            var query = input.value.trim().toLowerCase();
-            var matches = 0;
+        const apply = () => {
+            const query = input.value.trim().toLowerCase();
+            let matches = 0;
 
-            Array.prototype.forEach.call(items, function (item) {
-                var hit = !query || item.dataset.check.indexOf(query) !== -1;
+            for (const item of items) {
+                const hit = !query || item.dataset.check.includes(query);
                 item.hidden = !hit;
                 if (hit) matches++;
-            });
+            }
 
             // A group heading is only meaningful while something under it shows.
-            Array.prototype.forEach.call(groups, function (group) {
-                var visible = false;
-                var node = group.nextElementSibling;
+            for (const group of groups) {
+                let visible = false;
+                let node = group.nextElementSibling;
                 while (node && !node.classList.contains('check-group')) {
-                    if (!node.hidden) { visible = true; break; }
+                    if (!node.hidden) {
+                        visible = true;
+                        break;
+                    }
                     node = node.nextElementSibling;
                 }
                 group.hidden = !visible;
-            });
+            }
 
             if (empty) empty.hidden = matches !== 0;
-        }
+        };
 
         input.addEventListener('input', apply);
 
         // Escape clears the filter rather than leaving the list narrowed.
-        input.addEventListener('keydown', function (event) {
+        input.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
                 input.value = '';
                 apply();
             }
         });
-    }
+    };
 
     // ------------------------------------------------------------------ init
 
-    function init() {
+    const init = () => {
         initThemeToggle();
         initCopyButtons();
         initCheckFilter();
-    }
+    };
 
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
