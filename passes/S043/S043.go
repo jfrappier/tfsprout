@@ -85,25 +85,9 @@ func elemResourceHasWriteOnly(pass *analysis.Pass, elem ast.Expr, depth int) boo
 		return false
 	}
 
-	if !schema.IsTypeResource(pass.TypesInfo.TypeOf(elem)) {
-		return false
-	}
+	schemaMap := elemResourceSchemaMap(pass, elem)
 
-	compositeLit := elemCompositeLit(elem)
-
-	if compositeLit == nil {
-		return false
-	}
-
-	schemaKvExpr := astutils.CompositeLitField(compositeLit, schema.ResourceFieldSchema)
-
-	if schemaKvExpr == nil {
-		return false
-	}
-
-	schemaMap, ok := schemaKvExpr.Value.(*ast.CompositeLit)
-
-	if !ok {
+	if schemaMap == nil {
 		return false
 	}
 
@@ -122,6 +106,31 @@ func elemResourceHasWriteOnly(pass *analysis.Pass, elem ast.Expr, depth int) boo
 	}
 
 	return false
+}
+
+// elemResourceSchemaMap returns the map[string]*schema.Schema literal held by
+// an Elem expression that is a *schema.Resource, or nil if the Elem is not a
+// Resource or does not declare Schema as a literal.
+func elemResourceSchemaMap(pass *analysis.Pass, elem ast.Expr) *ast.CompositeLit {
+	if !schema.IsTypeResource(pass.TypesInfo.TypeOf(elem)) {
+		return nil
+	}
+
+	compositeLit := elemCompositeLit(elem)
+
+	if compositeLit == nil {
+		return nil
+	}
+
+	schemaKvExpr := astutils.CompositeLitField(compositeLit, schema.ResourceFieldSchema)
+
+	if schemaKvExpr == nil {
+		return nil
+	}
+
+	schemaMap, _ := schemaKvExpr.Value.(*ast.CompositeLit)
+
+	return schemaMap
 }
 
 // elemCompositeLit unwraps the &schema.Resource{...} form that Elem almost

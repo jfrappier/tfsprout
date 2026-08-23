@@ -71,22 +71,30 @@ func run(pass *analysis.Pass) (interface{}, error) {
 			pass.Reportf(schemaInfo.Fields[schema.SchemaFieldType].Pos(), "%s: schema should not configure TypeMap or TypeSet for resource identity", analyzerName)
 		}
 
-		// Map iteration order is not stable, so report in a fixed order to keep
-		// output deterministic across runs.
-		fieldNames := make([]string, 0, len(schemaInfo.Fields))
-		for fieldName := range schemaInfo.Fields {
-			fieldNames = append(fieldNames, fieldName)
-		}
-		sort.Strings(fieldNames)
-
-		for _, fieldName := range fieldNames {
-			if _, ok := identityAllowedFields[fieldName]; ok {
-				continue
-			}
-
-			pass.Reportf(schemaInfo.Fields[fieldName].Pos(), "%s: schema should not configure %s with RequiredForImport or OptionalForImport", analyzerName, fieldName)
-		}
+		reportDisallowedFields(pass, schemaInfo)
 	}
 
 	return nil, nil
+}
+
+// reportDisallowedFields reports every field on an identity schema attribute
+// that the identity schema does not support.
+func reportDisallowedFields(pass *analysis.Pass, schemaInfo *schema.SchemaInfo) {
+	// Map iteration order is not stable, so report in a fixed order to keep
+	// output deterministic across runs.
+	fieldNames := make([]string, 0, len(schemaInfo.Fields))
+
+	for fieldName := range schemaInfo.Fields {
+		if _, ok := identityAllowedFields[fieldName]; ok {
+			continue
+		}
+
+		fieldNames = append(fieldNames, fieldName)
+	}
+
+	sort.Strings(fieldNames)
+
+	for _, fieldName := range fieldNames {
+		pass.Reportf(schemaInfo.Fields[fieldName].Pos(), "%s: schema should not configure %s with RequiredForImport or OptionalForImport", analyzerName, fieldName)
+	}
 }
