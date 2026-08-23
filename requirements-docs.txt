@@ -2,7 +2,9 @@
 #
 # Pinned so a docs build is reproducible and a surprise upstream release cannot
 # break `mkdocs build --strict` in CI.
+#
+# Requires Python 3.10 or later, which is the floor pymdown-extensions 11 sets.
 mkdocs==1.6.1
 mkdocs-cinder==1.2.0
-pymdown-extensions==10.21.3
+pymdown-extensions==11.0.2
 pygments==2.21.0
