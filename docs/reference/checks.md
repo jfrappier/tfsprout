@@ -110,6 +110,7 @@ Patterns in `schema.Schema` definitions and attribute maps. Several of these cat
 | [S036](../checks/S036.md) | check for `Schema` with invalid `ConflictsWith` attribute references | AST |
 | [S037](../checks/S037.md) | check for `Schema` with invalid `ExactlyOneOf` attribute references | AST |
 | [S038](../checks/S038.md) | check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured | AST |
+| [S039](../checks/S039.md) | check for `Schema` with invalid resource identity configuration | AST |
 
 ### Validation checks
 

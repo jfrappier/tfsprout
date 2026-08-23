@@ -6,11 +6,12 @@ NOTES
 
 FEATURES
 
+* **New Check:** `S039`: check for `Schema` with invalid resource identity configuration. An identity attribute may only configure `Type`, `Description`, `Elem`, and exactly one of `RequiredForImport` or `OptionalForImport`; anything else fails provider schema validation via `(*schema.ResourceIdentity).InternalIdentityValidate`. Because the SDK rejects the import fields outside an identity schema, this also catches the inverse mistake of setting `RequiredForImport` on an ordinary resource attribute.
 * **New Check:** `S038`: check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured. The two are mutually exclusive and configuring both fails provider schema validation with `ValidateFunc and ValidateDiagFunc cannot both be set`.
 
 BUG FIXES
 
-* `S013`: no longer reports resource identity schema attributes. Identity schemas are declared as an ordinary `map[string]*schema.Schema` but configure `RequiredForImport`/`OptionalForImport` in place of `Computed`, `Optional`, or `Required`, so every attribute of every identity schema was reported. The bug is inherited from `tfproviderlint` (see [bflad/tfproviderlint#340](https://github.com/bflad/tfproviderlint/issues/340)) and affects any provider adopting Terraform 1.12 resource identity. Verified against `terraform-provider-scaleway`, where it accounted for 21 of the 22 findings tfsprout reported.
+* `S013`: no longer reports resource identity schema attributes. Identity schemas are declared as an ordinary `map[string]*schema.Schema` but configure `RequiredForImport`/`OptionalForImport` in place of `Computed`, `Optional`, or `Required`, so every attribute of every identity schema was reported. The bug is inherited from `tfproviderlint` (see [bflad/tfproviderlint#340](https://github.com/bflad/tfproviderlint/issues/340)) and affects any provider adopting Terraform 1.12 resource identity. Verified against `terraform-provider-scaleway`, where it accounted for 21 of the 22 findings tfsprout reported. Identity schemas are now validated on their own terms by the new `S039`.
 
 ENHANCEMENTS
 

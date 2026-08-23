@@ -70,6 +70,7 @@ import (
 	"github.com/jfrappier/tfsprout/passes/S036"
 	"github.com/jfrappier/tfsprout/passes/S037"
 	"github.com/jfrappier/tfsprout/passes/S038"
+	"github.com/jfrappier/tfsprout/passes/S039"
 	"github.com/jfrappier/tfsprout/passes/V001"
 	"github.com/jfrappier/tfsprout/passes/V002"
 	"github.com/jfrappier/tfsprout/passes/V003"
@@ -160,6 +161,7 @@ var AllChecks = []*analysis.Analyzer{
 	S036.Analyzer,
 	S037.Analyzer,
 	S038.Analyzer,
+	S039.Analyzer,
 	V001.Analyzer,
 	V002.Analyzer,
 	V003.Analyzer,
