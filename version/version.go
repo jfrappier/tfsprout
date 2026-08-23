@@ -10,7 +10,13 @@ var (
 	GitCommit string
 
 	// The main version number that is being run at the moment.
-	Version = "0.15.0"
+	//
+	// This tracks the current stable release. GoReleaser overrides it from the
+	// git tag at link time, so a released binary reports the tag while a build
+	// made from source reports this value with the VersionPrerelease marker
+	// below -- that is, "the released version, plus whatever is on main since".
+	// Bump it as part of cutting a release; see docs/contributing/releasing.md.
+	Version = "0.2.0"
 
 	// A pre-release marker for the version. If this is "" (empty string)
 	// then it means that it is a final release. Otherwise, this is a pre-release
