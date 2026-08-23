@@ -87,7 +87,9 @@ Run both before opening a pull request.
 The site at <https://jfrappier.github.io/tfsprout/> is built with
 [MkDocs](https://www.mkdocs.org/) and the
 [Cinder](https://github.com/chrissimpkins/cinder) theme. Every dependency is
-pinned in `requirements-docs.txt`:
+pinned in `requirements-docs.txt`, which needs **Python 3.10 or later** —
+`pymdown-extensions` 11 dropped 3.9, and on an older interpreter pip reports
+only that no matching distribution was found:
 
 ```shell
 python3 -m venv .venv
