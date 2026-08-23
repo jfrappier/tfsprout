@@ -16,7 +16,7 @@ validation.StringDoesNotMatch(regexp.MustCompile(`^[!@#$%^&*()]+$`), "must not c
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:V010` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:V010` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 validation.StringDoesNotMatch(regexp.MustCompile(`^[!@#$%^&*()]+$`), "") //lintignore:V010

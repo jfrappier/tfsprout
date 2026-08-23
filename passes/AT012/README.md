@@ -2,9 +2,13 @@
 
 The AT012 analyzer reports likely incorrect uses of multiple `TestAcc` function name prefixes up to the conventional underscore (`_`) prefix separator within the same file. Typically, Terraform acceptance tests should use the same naming prefix within one test file so testers can easily run all acceptance tests for the file and not miss associated tests.
 
-Optional parameters:
+## Options
 
-- `ignored-filenames` Comma-separated list of file names to ignore, defaults to none.
+Namespaced under the check ID on the command line, as `-AT012.ignored-filenames=VALUE`.
+
+| Flag | Default | Effect |
+|---|---|---|
+| `ignored-filenames` | _none_ | Comma-separated list of file names to ignore |
 
 ## Flagged Code
 
@@ -24,7 +28,7 @@ func TestAccExampleThing_Test2(t *testing.T) { /* ... */ }
 
 ## Ignoring Reports
 
-In addition to the optional parameters, reports can be ignored by adding a `//lintignore:AT012` Go code comment before any test declaration to ignore, e.g.
+In addition to the options above, reports can be ignored by adding a `//lintignore:AT012` Go code comment before any test declaration to ignore, e.g.
 
 ```go
 //lintignore:AT012

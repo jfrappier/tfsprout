@@ -22,7 +22,7 @@ The S034 analyzer reports cases of schemas which enable `PromoteSingle`, which i
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:S034` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:S034` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:S034

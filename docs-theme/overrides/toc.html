@@ -1,0 +1,46 @@
+{#
+  Cinder's stock sidebar is the current page's table of contents and nothing
+  else. That is fine for a prose page, but a check page needs to sit inside the
+  catalogue of 93 checks -- those pages are deliberately kept out of the navbar
+  (see not_in_nav in mkdocs.yml), so this is where they become browsable.
+#}
+{% if page.meta.check_id %}
+<div class="bs-sidebar hidden-print affix well check-sidebar" role="complementary">
+    <form class="check-filter" role="search" onsubmit="return false;">
+        <input type="search" id="check-filter-input" autocomplete="off"
+               placeholder="Filter checks&hellip;" aria-label="Filter checks">
+    </form>
+    <ul class="nav bs-sidenav check-list">
+        {%- set ns = namespace(category=None, extra=None) %}
+        {%- for check in config.extra.checks %}
+            {%- if check.category != ns.category or check.extra != ns.extra %}
+                {%- set ns.category = check.category %}
+                {%- set ns.extra = check.extra %}
+        <li class="check-group">{{ check.category }}{% if check.extra %} <span class="check-group-x">extra</span>{% endif %}</li>
+            {%- endif %}
+        <li class="first-level check-item {% if check.id == page.meta.check_id %}active{% endif %}"
+            data-check="{{ check.id|lower }} {{ check.description_plain|lower }}">
+            <a href="{{ ('checks/' ~ check.id ~ '/')|url }}">
+                <code>{{ check.id }}</code>
+                <span class="check-item-desc">{{ check.description_plain }}</span>
+            </a>
+        </li>
+        {%- endfor %}
+    </ul>
+    <p class="check-list-empty" hidden>No checks match that filter.</p>
+</div>
+{% else %}
+<div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        {%- for toc_item in page.toc %}
+        <li class="first-level {% if toc_item.active %}active{% endif %}"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+            {%- for toc_item in toc_item.children %}
+            <li class="second-level"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                {% for toc_item in toc_item.children %}
+                <li class="third-level"><a href="{{ toc_item.url }}">{{ toc_item.title }}</a></li>
+                {%- endfor %}
+            {%- endfor %}
+        {%- endfor %}
+    </ul>
+</div>
+{% endif %}

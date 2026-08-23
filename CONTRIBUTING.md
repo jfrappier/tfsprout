@@ -41,7 +41,9 @@ Then run your build against a real Terraform Provider. Fixtures do not catch fal
 2. Write the analyzer, requiring `commentignore` and consulting the ignorer before every report.
 3. Register it in `passes/checks.go` (or `xpasses/checks.go`), keeping the list alphabetical.
 4. Add `testdata/` with failing, passing, and `//lintignore:` fixtures.
-5. Add `README.md` to the check directory.
+5. Add `README.md` to the check directory. This is the source of the check's page on the
+   [documentation site](https://jfrappier.github.io/tfsprout/) — nothing else needs writing
+   for it to appear there.
 6. Add a row to [`docs/reference/checks.md`](docs/reference/checks.md) — CI fails if a check directory has no row.
 
 The full walkthrough is in [Adding an analyzer](docs/contributing/adding-an-analyzer.md).
@@ -52,6 +54,9 @@ The full walkthrough is in [Adding an analyzer](docs/contributing/adding-an-anal
 - **The first line of a check's `Doc` constant is its description** in `tfsprout help` and in the check index. Write it as `check for ...`.
 - **Report messages are prefixed with the analyzer name**, as `"%s: message"`, so findings stay greppable by check ID.
 - **Go 1.25 is the floor**, and CI tests against both 1.25.x and 1.27.x. Do not drop either job.
+- **Check READMEs are read in two places** — on GitHub and on the docs site. Use GitHub's
+  `> [!NOTE]` alert syntax for callouts; the site build converts it. See
+  [Building the documentation site](docs/contributing/building.md#building-the-documentation-site).
 
 ## Reporting bugs
 

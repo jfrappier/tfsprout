@@ -2,9 +2,13 @@
 
 The R006 analyzer reports when `RetryFunc` declarations are missing retryable errors (e.g. `RetryableError()` calls) and should not be used as `RetryFunc`.
 
-Optional parameters:
+## Options
 
-- `-package-aliases` Comma-separated list of additional Go import paths to consider as aliases for helper/resource, defaults to none.
+Namespaced under the check ID on the command line, as `-R006.package-aliases=VALUE`.
+
+| Flag | Default | Effect |
+|---|---|---|
+| `package-aliases` | _none_ | Comma-separated list of additional Go import paths to treat as aliases for `helper/resource` |
 
 ## Flagged Code
 
@@ -50,7 +54,7 @@ err := resource.Retry(1 * time.Minute, func() *RetryError {
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R006` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R006` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:R006

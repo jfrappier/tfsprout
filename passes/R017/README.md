@@ -1,6 +1,6 @@
 # R017
 
-The R017 analyzer reports [`(*schema.ResourceData).SetId()`](https://godoc.org/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Set) usage with unstable `time.Now()` value. Schema attributes should be stable across Terraform runs.
+The R017 analyzer reports [`(*schema.ResourceData).SetId()`](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Set) usage with unstable `time.Now()` value. Schema attributes should be stable across Terraform runs.
 
 ## Flagged Code
 
@@ -16,7 +16,7 @@ d.SetId("stablestring")
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R017` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R017` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:R017

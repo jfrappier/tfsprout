@@ -1,6 +1,6 @@
 # R007
 
-The R007 analyzer reports usage of the deprecated [(helper/schema.ResourceData).Partial()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema?tab=doc#ResourceData.Partial) function that does not need replacement.
+The R007 analyzer reports usage of the deprecated [(helper/schema.ResourceData).Partial()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Partial) function that does not need replacement.
 
 ## Flagged Code
 
@@ -16,7 +16,7 @@ d.Partial(true),
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R007` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R007` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:R007

@@ -1,3 +1,5 @@
 dist/
 RELEASE-NOTES.md
 .idea
+site/
+.venv/

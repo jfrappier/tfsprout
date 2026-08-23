@@ -16,7 +16,7 @@ validation.StringMatch(regexp.MustCompile(`^[a-zA-Z0-9.-]+$`), "must contain onl
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:V009` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:V009` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 validation.StringMatch(regexp.MustCompile(`^[a-zA-Z0-9.-]+$`), "") //lintignore:V009

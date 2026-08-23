@@ -22,7 +22,7 @@ and configures `InputDefault`, which is not valid.
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:S030` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:S030` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:S030

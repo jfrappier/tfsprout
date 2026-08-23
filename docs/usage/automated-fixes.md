@@ -12,16 +12,16 @@ tfsprout -fix ./...
 
 | Check | Command | What it rewrites |
 |---|---|---|
-| [R007](../../passes/R007) | `tfsprout`, `tfsproutx` | Deprecated `(schema.ResourceData).Partial` usage |
-| [XR007](../../xpasses/XR007) | `tfsproutx` only | `os/exec.Command` usage |
-| [XR008](../../xpasses/XR008) | `tfsproutx` only | `os/exec.CommandContext` usage |
+| [R007](../checks/R007.md) | `tfsprout`, `tfsproutx` | Deprecated `(schema.ResourceData).Partial` usage |
+| [XR007](../checks/XR007.md) | `tfsproutx` only | `os/exec.Command` usage |
+| [XR008](../checks/XR008.md) | `tfsproutx` only | `os/exec.CommandContext` usage |
 
 Every other check reports only. Running `tfsprout -fix` on a provider with hundreds of findings will change almost nothing, and that is expected behavior rather than a failure.
 
 In practice this means:
 
 - `tfsprout -fix ./...` can only ever modify code that uses the deprecated `Partial` API.
-- `tfsproutx -fix ./...` additionally removes `os/exec` calls, which is a deliberately aggressive rewrite — read [XR007](../../xpasses/XR007) and [XR008](../../xpasses/XR008) before running it.
+- `tfsproutx -fix ./...` additionally removes `os/exec` calls, which is a deliberately aggressive rewrite — read [XR007](../checks/XR007.md) and [XR008](../checks/XR008.md) before running it.
 
 ## How fixes are produced
 

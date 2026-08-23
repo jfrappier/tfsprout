@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+    <meta name="theme-color" content="#1b3a2f">
+    {#
+      Applied before the stylesheets paint so a returning dark-theme reader
+      never sees a flash of the light palette. Falls back to the operating
+      system preference when nothing has been chosen explicitly.
+    #}
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('tfsprout-theme');
+                if (!saved) {
+                    saved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+{% endblock %}
+

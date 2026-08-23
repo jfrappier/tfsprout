@@ -38,7 +38,7 @@ used for configuration block attributes.
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:S022` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:S022` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:S022

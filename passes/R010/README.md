@@ -1,6 +1,6 @@
 # R010
 
-The R010 analyzer reports when [(helper/schema.ResourceData).GetChange()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema?tab=doc#ResourceData.GetChange) assignments are not using the first return value (assigned to `_`), which should be replaced with [(helper/schema.ResourceData).Get()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema?tab=doc#ResourceData.Get) instead.
+The R010 analyzer reports when [(helper/schema.ResourceData).GetChange()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.GetChange) assignments are not using the first return value (assigned to `_`), which should be replaced with [(helper/schema.ResourceData).Get()](https://pkg.go.dev/github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema#ResourceData.Get) instead.
 
 ## Flagged Code
 
@@ -16,7 +16,7 @@ n := d.Get("example")
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:R010` Go code comment at the end of the offending line or on the line immediately proceding, e.g.
+Singular reports can be ignored by adding a `//lintignore:R010` Go code comment at the end of the offending line or on the line immediately preceding, e.g.
 
 ```go
 //lintignore:R010
