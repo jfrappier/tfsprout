@@ -1,4 +1,4 @@
-# v0.2.0 (Unreleased)
+# v0.2.0
 
 NOTES
 
@@ -7,12 +7,12 @@ NOTES
 
 FEATURES
 
+* **New Check:** `S038`: check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured. The two are mutually exclusive and configuring both fails provider schema validation with `ValidateFunc and ValidateDiagFunc cannot both be set`.
+* **New Check:** `S039`: check for `Schema` with invalid resource identity configuration. An identity attribute may only configure `Type`, `Description`, `Elem`, and exactly one of `RequiredForImport` or `OptionalForImport`; anything else fails provider schema validation via `(*schema.ResourceIdentity).InternalIdentityValidate`. Because the SDK rejects the import fields outside an identity schema, this also catches the inverse mistake of setting `RequiredForImport` on an ordinary resource attribute.
 * **New Check:** `S040`: check for `Schema` with only `Computed` enabled and `ValidateDiagFunc` configured. The `ValidateDiagFunc` counterpart to `S010`, and the last of the three `ValidateDiagFunc` failures in `(schemaMap).internalValidate`.
 * **New Check:** `S041`: check for `Schema` with `WriteOnly` and an incompatible field configured. `Computed`, `ForceNew`, `Default`, and `DefaultFunc` are each rejected alongside `WriteOnly`; one report is emitted per offending field.
 * **New Check:** `S042`: check for `Schema` of `TypeList`, `TypeMap`, or `TypeSet` with `WriteOnly` enabled. Write-only values are only supported on primitive types.
 * **New Check:** `S043`: check for `Schema` of `TypeSet` or `Computed` block containing `WriteOnly` attributes at any depth, mirroring the SDK's own `(schemaMap).hasWriteOnly` recursion.
-* **New Check:** `S039`: check for `Schema` with invalid resource identity configuration. An identity attribute may only configure `Type`, `Description`, `Elem`, and exactly one of `RequiredForImport` or `OptionalForImport`; anything else fails provider schema validation via `(*schema.ResourceIdentity).InternalIdentityValidate`. Because the SDK rejects the import fields outside an identity schema, this also catches the inverse mistake of setting `RequiredForImport` on an ordinary resource attribute.
-* **New Check:** `S038`: check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured. The two are mutually exclusive and configuring both fails provider schema validation with `ValidateFunc and ValidateDiagFunc cannot both be set`.
 
 BUG FIXES
 
