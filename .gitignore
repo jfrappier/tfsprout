@@ -3,3 +3,5 @@ RELEASE-NOTES.md
 .idea
 site/
 .venv/
+__pycache__/
+.codacy/

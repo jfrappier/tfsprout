@@ -1,5 +1,29 @@
 ---
 # `site/` is the MkDocs build output. It is gitignored, but exclude it here too
 # so that a local build left lying around is never analysed as source.
+#
+# The per-check `testdata/` lockfiles are excluded from dependency scanning.
+# Each check's testdata is its own Go module pinning a real
+# `terraform-plugin-sdk` release, so that analyzers resolve genuine SDK types
+# rather than stubs. Those pins carry the SDK's transitive dependencies and
+# their CVEs, which are not part of this project's dependency surface:
+#
+#   * tfsprout never imports the SDK. It matches on package paths and type
+#     names in the analysed provider's AST -- see
+#     docs/concepts/scope-and-sdk-support.md. The only non-stdlib imports are
+#     golang.org/x/tools and github.com/bflad/gopaniccheck.
+#   * `go list -deps ./cmd/tfsprout ./cmd/tfsproutx` contains no SDK package,
+#     so nothing here reaches a released binary.
+#   * testdata modules are separate Go modules. `go build ./...` does not
+#     include them, and `analysistest` loads them as analysis *input* -- their
+#     code is type-checked, never linked into a test binary and never executed.
+#
+# Only the lockfiles are excluded, not the testdata sources: the fixture `.go`
+# files are still analysed, and the root `go.mod`/`go.sum` -- the dependency
+# surface that does ship -- remain in scope.
 exclude_paths:
   - 'site/**'
+  - 'passes/*/testdata/go.mod'
+  - 'passes/*/testdata/go.sum'
+  - 'xpasses/*/testdata/go.mod'
+  - 'xpasses/*/testdata/go.sum'

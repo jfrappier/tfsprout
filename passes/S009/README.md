@@ -1,7 +1,10 @@
 # S009
 
-The S009 analyzer reports cases of `TypeList` or `TypeSet` schemas configuring `ValidateFunc`,
-which will fail schema validation.
+The S009 analyzer reports cases of `TypeList` or `TypeSet` schemas configuring
+`ValidateFunc` or `ValidateDiagFunc`, which will fail schema validation.
+
+Neither validator is supported at the top level of a list or set. Validation
+belongs on the element schema instead, where it runs against each element.
 
 ## Flagged Code
 
@@ -13,9 +16,9 @@ which will fail schema validation.
 }
 
 &schema.Schema{
-    Type:         schema.TypeSet,
-    Elem:         &schema.Schema{Type: schema.TypeString},
-    ValidateFunc: /* ... */,
+    Type:             schema.TypeSet,
+    Elem:             &schema.Schema{Type: schema.TypeString},
+    ValidateDiagFunc: /* ... */,
 }
 ```
 
@@ -43,8 +46,8 @@ which will fail schema validation.
 &schema.Schema{
     Type: schema.TypeSet,
     Elem: &schema.Schema{
-      Type:         schema.TypeString,
-      ValidateFunc: /* ... */,
+      Type:             schema.TypeString,
+      ValidateDiagFunc: /* ... */,
     },
 }
 ```

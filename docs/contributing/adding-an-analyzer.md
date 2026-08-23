@@ -12,33 +12,36 @@ This walks through adding a new check end to end. Read [How tfsprout works](../c
 
 ## 1. Create the package
 
-Create `passes/S038/` (or `xpasses/XS003/` for an extra check), containing `S038.go`:
+Create `passes/S900/` (or `xpasses/XS900/` for an extra check), containing `S900.go`:
+
+`S900` is a placeholder ID used only for this walkthrough, so it never collides with a real check. Use the next free number in the range for your own.
 
 ```go
-// Package S038 defines an Analyzer that checks for
+// Package S900 defines an Analyzer that checks for
 // Schema that configure both Sensitive and Computed
-package S038
+package S900
 
 import (
     "golang.org/x/tools/go/analysis"
 
+    "github.com/jfrappier/tfsprout/helper/terraformtype/helper/schema"
     "github.com/jfrappier/tfsprout/passes/commentignore"
-    "github.com/jfrappier/tfsprout/passes/helper/schema/schemainfocompositelit"
+    "github.com/jfrappier/tfsprout/passes/helper/schema/schemainfo"
 )
 
 const Doc = `check for Schema that configure both Sensitive and Computed
 
-The S038 analyzer reports cases of schemas which configure both Sensitive
+The S900 analyzer reports cases of schemas which configure both Sensitive
 and Computed, where the sensitivity has no effect.`
 
-const analyzerName = "S038"
+const analyzerName = "S900"
 
 var Analyzer = &analysis.Analyzer{
     Name: analyzerName,
     Doc:  Doc,
     Requires: []*analysis.Analyzer{
+        schemainfo.Analyzer,
         commentignore.Analyzer,
-        schemainfocompositelit.Analyzer,
     },
     Run: run,
 }
@@ -57,14 +60,14 @@ Read your dependencies out of `pass.ResultOf`, skip suppressed nodes, and report
 ```go
 func run(pass *analysis.Pass) (interface{}, error) {
     ignorer := pass.ResultOf[commentignore.Analyzer].(*commentignore.Ignorer)
-    schemaInfos := pass.ResultOf[schemainfocompositelit.Analyzer].([]*schema.SchemaInfo)
+    schemaInfos := pass.ResultOf[schemainfo.Analyzer].([]*schema.SchemaInfo)
 
     for _, schemaInfo := range schemaInfos {
         if ignorer.ShouldIgnore(analyzerName, schemaInfo.AstCompositeLit) {
             continue
         }
 
-        if !schemaInfo.DeclaresBoolFieldWithZeroValue(schema.SchemaFieldSensitive) {
+        if !schemaInfo.DeclaresField(schema.SchemaFieldSensitive) || !schemaInfo.DeclaresField(schema.SchemaFieldComputed) {
             continue
         }
 
@@ -94,7 +97,7 @@ Only add checks that report. Information-gathering analyzers stay out of `AllChe
 Create `testdata/` inside your check's directory. Each check's testdata is **its own Go module** with a real `terraform-plugin-sdk` dependency, so the analyzer resolves genuine SDK types rather than stubs:
 
 ```
-passes/S038/testdata/
+passes/S900/testdata/
 ├── go.mod
 ├── go.sum
 └── src/
@@ -111,24 +114,24 @@ _ = schema.Schema{
 } // want "schema should not configure Sensitive with Computed"
 ```
 
-Cover the passing cases too — a check that only has failing fixtures will not catch false positives. Include a file exercising `//lintignore:S038` to prove suppression works.
+Cover the passing cases too — a check that only has failing fixtures will not catch false positives. Include a file exercising `//lintignore:S900` to prove suppression works.
 
 ## 5. Write the test
 
 ```go
-package S038_test
+package S900_test
 
 import (
     "testing"
 
     "golang.org/x/tools/go/analysis/analysistest"
 
-    "github.com/jfrappier/tfsprout/passes/S038"
+    "github.com/jfrappier/tfsprout/passes/S900"
 )
 
-func TestS038(t *testing.T) {
+func TestS900(t *testing.T) {
     testdata := analysistest.TestData()
-    analysistest.Run(t, testdata, S038.Analyzer, "testdata/src/a")
+    analysistest.Run(t, testdata, S900.Analyzer, "testdata/src/a")
 }
 ```
 
@@ -139,9 +142,9 @@ See [Testing](testing.md) for per-check flags, suggested fixes, and golden files
 Add `README.md` to the check directory, following the structure every other check uses:
 
 ````markdown
-# S038
+# S900
 
-The S038 analyzer reports cases of schemas which configure both
+The S900 analyzer reports cases of schemas which configure both
 Sensitive and Computed, where the sensitivity has no effect.
 
 ## Flagged Code
@@ -163,12 +166,12 @@ Sensitive and Computed, where the sensitivity has no effect.
 
 ## Ignoring Reports
 
-Singular reports can be ignored by adding the a `//lintignore:S038` Go code
+Singular reports can be ignored by adding the a `//lintignore:S900` Go code
 comment at the end of the offending line or on the line immediately
 proceding, e.g.
 
 ```go
-//lintignore:S038
+//lintignore:S900
 &schema.Schema{
     Computed:  true,
     Sensitive: true,
@@ -183,7 +186,7 @@ Then add a row to the appropriate table in [`docs/reference/checks.md`](../refer
 ```shell
 go test ./...
 go install ./cmd/tfsprout
-cd /path/to/a/real/provider && tfsprout -S038 ./...
+cd /path/to/a/real/provider && tfsprout -S900 ./...
 ```
 
 Running against a real provider is the step that catches false positives. A check that fires on idiomatic code in a well-maintained provider needs narrowing before it ships.

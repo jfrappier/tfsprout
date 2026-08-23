@@ -47,6 +47,12 @@ func run(pass *analysis.Pass) (interface{}, error) {
 				continue
 			}
 
+			// Identity schema attributes configure RequiredForImport or
+			// OptionalForImport instead, and must not be reported here.
+			if schemaInfo.IsResourceIdentitySchema() {
+				continue
+			}
+
 			switch t := schemaInfo.AstCompositeLit.Type.(type) {
 			default:
 				pass.Reportf(schemaInfo.AstCompositeLit.Lbrace, "%s: schema should configure one of Computed, Optional, or Required", analyzerName)

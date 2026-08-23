@@ -9,31 +9,35 @@ import (
 )
 
 const (
-	SchemaFieldAtLeastOneOf     = `AtLeastOneOf`
-	SchemaFieldComputed         = `Computed`
-	SchemaFieldComputedWhen     = `ComputedWhen`
-	SchemaFieldConfigMode       = `ConfigMode`
-	SchemaFieldConflictsWith    = `ConflictsWith`
-	SchemaFieldDefault          = `Default`
-	SchemaFieldDefaultFunc      = `DefaultFunc`
-	SchemaFieldDeprecated       = `Deprecated`
-	SchemaFieldDescription      = `Description`
-	SchemaFieldDiffSuppressFunc = `DiffSuppressFunc`
-	SchemaFieldElem             = `Elem`
-	SchemaFieldExactlyOneOf     = `ExactlyOneOf`
-	SchemaFieldForceNew         = `ForceNew`
-	SchemaFieldInputDefault     = `InputDefault`
-	SchemaFieldMaxItems         = `MaxItems`
-	SchemaFieldMinItems         = `MinItems`
-	SchemaFieldOptional         = `Optional`
-	SchemaFieldPromoteSingle    = `PromoteSingle`
-	SchemaFieldRemoved          = `Removed`
-	SchemaFieldRequired         = `Required`
-	SchemaFieldSensitive        = `Sensitive`
-	SchemaFieldSet              = `Set`
-	SchemaFieldStateFunc        = `StateFunc`
-	SchemaFieldType             = `Type`
-	SchemaFieldValidateFunc     = `ValidateFunc`
+	SchemaFieldAtLeastOneOf      = `AtLeastOneOf`
+	SchemaFieldComputed          = `Computed`
+	SchemaFieldComputedWhen      = `ComputedWhen`
+	SchemaFieldConfigMode        = `ConfigMode`
+	SchemaFieldConflictsWith     = `ConflictsWith`
+	SchemaFieldDefault           = `Default`
+	SchemaFieldDefaultFunc       = `DefaultFunc`
+	SchemaFieldDeprecated        = `Deprecated`
+	SchemaFieldDescription       = `Description`
+	SchemaFieldDiffSuppressFunc  = `DiffSuppressFunc`
+	SchemaFieldElem              = `Elem`
+	SchemaFieldExactlyOneOf      = `ExactlyOneOf`
+	SchemaFieldForceNew          = `ForceNew`
+	SchemaFieldInputDefault      = `InputDefault`
+	SchemaFieldMaxItems          = `MaxItems`
+	SchemaFieldMinItems          = `MinItems`
+	SchemaFieldOptional          = `Optional`
+	SchemaFieldOptionalForImport = `OptionalForImport`
+	SchemaFieldPromoteSingle     = `PromoteSingle`
+	SchemaFieldRemoved           = `Removed`
+	SchemaFieldRequired          = `Required`
+	SchemaFieldRequiredForImport = `RequiredForImport`
+	SchemaFieldSensitive         = `Sensitive`
+	SchemaFieldSet               = `Set`
+	SchemaFieldStateFunc         = `StateFunc`
+	SchemaFieldType              = `Type`
+	SchemaFieldValidateDiagFunc  = `ValidateDiagFunc`
+	SchemaFieldValidateFunc      = `ValidateFunc`
+	SchemaFieldWriteOnly         = `WriteOnly`
 
 	SchemaValueTypeBool   = `TypeBool`
 	SchemaValueTypeFloat  = `TypeFloat`
@@ -246,6 +250,20 @@ func (info *SchemaInfo) DeclaresBoolFieldWithZeroValue(fieldName string) bool {
 	}
 
 	return !*valuePtr
+}
+
+// IsResourceIdentitySchema returns true if the Schema belongs to a resource
+// identity schema rather than a managed resource or data source schema.
+//
+// Identity schemas are declared as an ordinary map[string]*schema.Schema, so
+// they are indistinguishable from a resource schema by shape alone. The
+// discriminator is RequiredForImport and OptionalForImport, which the SDK
+// rejects anywhere else ("RequiredForImport is only valid for resource identity
+// schemas") and requires one of on every identity attribute. Checks that assert
+// on Computed, Optional, or Required must skip these, since identity attributes
+// legitimately configure none of the three.
+func (info *SchemaInfo) IsResourceIdentitySchema() bool {
+	return info.DeclaresField(SchemaFieldRequiredForImport) || info.DeclaresField(SchemaFieldOptionalForImport)
 }
 
 // IsType returns true if the given input is equal to the Type

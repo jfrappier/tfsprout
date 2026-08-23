@@ -1,5 +1,5 @@
 // Package S009 defines an Analyzer that checks for
-// Schema of TypeList or TypeSet with ValidateFunc configured
+// Schema of TypeList or TypeSet with ValidateFunc or ValidateDiagFunc configured
 package S009
 
 import (
@@ -12,10 +12,10 @@ import (
 	"github.com/jfrappier/tfsprout/passes/helper/schema/schemainfo"
 )
 
-const Doc = `check for Schema of TypeList or TypeSet with ValidateFunc configured
+const Doc = `check for Schema of TypeList or TypeSet with ValidateFunc or ValidateDiagFunc configured
 
-The S009 analyzer reports cases of TypeList or TypeSet schemas with ValidateFunc configured,
-which will fail schema validation.`
+The S009 analyzer reports cases of TypeList or TypeSet schemas with ValidateFunc or
+ValidateDiagFunc configured, which will fail schema validation.`
 
 const analyzerName = "S009"
 
@@ -37,7 +37,7 @@ func run(pass *analysis.Pass) (interface{}, error) {
 			continue
 		}
 
-		if !schemaInfo.DeclaresField(schema.SchemaFieldValidateFunc) {
+		if !schemaInfo.DeclaresField(schema.SchemaFieldValidateFunc) && !schemaInfo.DeclaresField(schema.SchemaFieldValidateDiagFunc) {
 			continue
 		}
 
@@ -47,9 +47,9 @@ func run(pass *analysis.Pass) (interface{}, error) {
 
 		switch t := schemaInfo.AstCompositeLit.Type.(type) {
 		default:
-			pass.Reportf(schemaInfo.AstCompositeLit.Lbrace, "%s: schema of TypeList or TypeSet should not include top level ValidateFunc", analyzerName)
+			pass.Reportf(schemaInfo.AstCompositeLit.Lbrace, "%s: schema of TypeList or TypeSet should not include top level ValidateFunc or ValidateDiagFunc", analyzerName)
 		case *ast.SelectorExpr:
-			pass.Reportf(t.Sel.Pos(), "%s: schema of TypeList or TypeSet should not include top level ValidateFunc", analyzerName)
+			pass.Reportf(t.Sel.Pos(), "%s: schema of TypeList or TypeSet should not include top level ValidateFunc or ValidateDiagFunc", analyzerName)
 		}
 	}
 

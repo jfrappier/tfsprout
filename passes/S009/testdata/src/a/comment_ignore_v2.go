@@ -16,4 +16,16 @@ func fcommentignore_v2() {
 		Type:         schema.TypeSet,
 		ValidateFunc: validateFunc_v2,
 	}
+
+	//lintignore:S009
+	_ = schema.Schema{
+		Type:             schema.TypeList,
+		ValidateDiagFunc: validateDiagFunc_v2,
+	}
+
+	//lintignore:S009
+	_ = schema.Schema{
+		Type:             schema.TypeSet,
+		ValidateDiagFunc: validateDiagFunc_v2,
+	}
 }

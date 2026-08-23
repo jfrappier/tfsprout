@@ -29,3 +29,22 @@ func foutside() {
 		},
 	}
 }
+
+func foutside_diag() {
+	_ = schema.Schema{
+		Type:             schema.TypeList,
+		ValidateDiagFunc: func() {},
+	}
+
+	_ = schema.Schema{
+		Type:             schema.TypeSet,
+		ValidateDiagFunc: func() {},
+	}
+
+	_ = map[string]*schema.Schema{
+		"name": {
+			Type:             schema.TypeList,
+			ValidateDiagFunc: func() {},
+		},
+	}
+}
