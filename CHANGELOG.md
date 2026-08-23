@@ -2,7 +2,7 @@
 
 NOTES
 
-* This release changes which findings are reported. A provider that ran clean on v0.1.1 may report new findings without any change to its own code, and `tfsprout` exits `3` when it does. Plan to re-baseline CI when upgrading. See [Exit codes and output](docs/reference/exit-codes-and-output.md).
+* This release changes which findings are reported. A provider that ran clean on v0.1.1 may report new findings without any change to its own code, and `tfsprout` exits `3` when it does. Plan to re-baseline CI when upgrading.
 
 FEATURES
 

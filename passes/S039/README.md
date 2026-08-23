@@ -14,8 +14,8 @@ therefore also cover the inverse mistake of setting an import field on an
 ordinary resource or data source attribute, which surfaces as that attribute
 configuring resource-only fields alongside it.
 
-This check is the counterpart to [S013](../S013/README.md), which skips identity
-schemas precisely so that S039 can validate them on their own terms.
+This check is the counterpart to `S013`, which skips identity schemas precisely
+so that S039 can validate them on their own terms.
 
 ## Flagged Code
 

@@ -23,7 +23,7 @@ A check ID, once assigned, belongs to that check forever.
 
 **Retired IDs are not recycled.** When a check is removed, its analyzer stays registered as a no-op rather than disappearing. Nine IDs are in this state today — see [Removed checks](../reference/removed-checks.md). This is what lets an old `//lintignore:V002` comment or a stale `-V002=false` CI flag remain harmless instead of breaking a build.
 
-**Numbers are assigned sequentially, not semantically.** There is no meaning to `S001` being lower than `S037` beyond the order they were written. Adjacent numbers are unrelated, and gaps in a range mean a check was removed.
+**Numbers are assigned sequentially, not semantically.** There is no meaning to `S001` being lower than `S039` beyond the order they were written. Adjacent numbers are unrelated, and gaps in a range mean a check was removed.
 
 The practical consequence: you can pin a check ID in an ignore comment, a CI flag, or a code review checklist and expect it to keep meaning the same thing across upgrades.
 

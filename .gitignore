@@ -3,3 +3,4 @@ RELEASE-NOTES.md
 .idea
 site/
 .venv/
+__pycache__/
