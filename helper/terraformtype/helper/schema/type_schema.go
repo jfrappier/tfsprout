@@ -33,6 +33,7 @@ const (
 	SchemaFieldSet              = `Set`
 	SchemaFieldStateFunc        = `StateFunc`
 	SchemaFieldType             = `Type`
+	SchemaFieldValidateDiagFunc = `ValidateDiagFunc`
 	SchemaFieldValidateFunc     = `ValidateFunc`
 
 	SchemaValueTypeBool   = `TypeBool`

@@ -33,7 +33,7 @@ extra_javascript:
   - javascripts/extra.js
 
 # The per-check pages under checks/ are generated at build time by
-# docs-theme/hooks.py from passes/*/README.md and xpasses/*/README.md. There are 93
+# docs-theme/hooks.py from passes/*/README.md and xpasses/*/README.md. There are 94
 # of them, so they are deliberately kept out of the navbar -- they are reached
 # from the check index, from search, and from the category sidebar that
 # overrides/toc.html renders on every check page.

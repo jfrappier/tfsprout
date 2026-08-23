@@ -1,3 +1,17 @@
+# v0.2.0 (Unreleased)
+
+NOTES
+
+* This release changes which findings are reported. A provider that ran clean on v0.1.1 may report new findings without any change to its own code, and `tfsprout` exits `3` when it does. Plan to re-baseline CI when upgrading. See [Exit codes and output](docs/reference/exit-codes-and-output.md).
+
+FEATURES
+
+* **New Check:** `S038`: check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured. The two are mutually exclusive and configuring both fails provider schema validation with `ValidateFunc and ValidateDiagFunc cannot both be set`.
+
+ENHANCEMENTS
+
+* `S009`: now also reports `ValidateDiagFunc` configured on a `TypeList` or `TypeSet` schema, not just `ValidateFunc`. The Terraform Plugin SDK rejects both identically (`ValidateFunc and ValidateDiagFunc are not yet supported on lists or sets`), so they are one rule and share the `S009` ID. Existing `//lintignore:S009` comments continue to suppress both, and no previously reported finding has changed position — only the report message, which now names both fields.
+
 # v0.1.1
 
 BUG FIXES

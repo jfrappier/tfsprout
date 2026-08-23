@@ -80,7 +80,7 @@ Patterns in `schema.Schema` definitions and attribute maps. Several of these cat
 | [S006](../checks/S006.md) | check for `Schema` of `TypeMap` missing `Elem` | AST |
 | [S007](../checks/S007.md) | check for `Schema` with both `Required` and `ConflictsWith` configured | AST |
 | [S008](../checks/S008.md) | check for `Schema` of `TypeList` or `TypeSet` with `Default` configured | AST |
-| [S009](../checks/S009.md) | check for `Schema` of `TypeList` or `TypeSet` with `ValidateFunc` configured | AST |
+| [S009](../checks/S009.md) | check for `Schema` of `TypeList` or `TypeSet` with `ValidateFunc` or `ValidateDiagFunc` configured | AST |
 | [S010](../checks/S010.md) | check for `Schema` of `Computed` only with `ValidateFunc` configured | AST |
 | [S011](../checks/S011.md) | check for `Schema` of `Computed` only with `DiffSuppressFunc` configured | AST |
 | [S012](../checks/S012.md) | check for `Schema` that `Type` is configured | AST |
@@ -109,6 +109,7 @@ Patterns in `schema.Schema` definitions and attribute maps. Several of these cat
 | [S035](../checks/S035.md) | check for `Schema` with invalid `AtLeastOneOf` attribute references | AST |
 | [S036](../checks/S036.md) | check for `Schema` with invalid `ConflictsWith` attribute references | AST |
 | [S037](../checks/S037.md) | check for `Schema` with invalid `ExactlyOneOf` attribute references | AST |
+| [S038](../checks/S038.md) | check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured | AST |
 
 ### Validation checks
 

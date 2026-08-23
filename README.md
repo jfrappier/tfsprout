@@ -6,7 +6,7 @@ Static analysis libraries and tooling for [Terraform Provider](https://www.terra
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/jfrappier/tfsprout)](https://pkg.go.dev/github.com/jfrappier/tfsprout)
 
-tfsprout runs 84 checks over a Terraform Provider's Go source and reports patterns that cause bugs, fail provider schema validation at runtime, or diverge from Terraform Plugin SDK conventions — missing `CheckDestroy` in acceptance tests, contradictory schema fields, unstable resource IDs, hand-rolled validators that duplicate `helper/validation`.
+tfsprout runs 85 checks over a Terraform Provider's Go source and reports patterns that cause bugs, fail provider schema validation at runtime, or diverge from Terraform Plugin SDK conventions — missing `CheckDestroy` in acceptance tests, contradictory schema fields, unstable resource IDs, hand-rolled validators that duplicate `helper/validation`.
 
 > **Note:** tfsprout is a fork of [`tfproviderlint`](https://github.com/bflad/tfproviderlint). **v0.1.0 is a drop-in replacement** — the lint checks and their behavior are unchanged and there are no new features. Only the project name, command names (`tfproviderlint` -> `tfsprout`, `tfproviderlintx` -> `tfsproutx`), and Go module path differ. See [Migrating from tfproviderlint](docs/migrating-from-tfproviderlint.md).
 >
@@ -67,13 +67,13 @@ The same pages live in [`docs/`](docs/) if you would rather read them here.
 
 ## Checks
 
-84 active checks in four categories. The full list, with a page per check, is in the [check index](docs/reference/checks.md) — or browse them at <https://jfrappier.github.io/tfsprout/reference/checks/>.
+85 active checks in four categories. The full list, with a page per check, is in the [check index](docs/reference/checks.md) — or browse them at <https://jfrappier.github.io/tfsprout/reference/checks/>.
 
 | Prefix | Category | Count |
 |---|---|---|
 | [`AT`](docs/reference/checks.md#acceptance-test-checks) | Acceptance tests — `TestCase` and `TestStep` usage, test function naming | 12 |
 | [`R`](docs/reference/checks.md#resource-checks) | Resources — `Resource` definitions, CRUD functions, `ResourceData` usage | 18 |
-| [`S`](docs/reference/checks.md#schema-checks) | Schemas — `Schema` definitions and attribute maps | 36 |
+| [`S`](docs/reference/checks.md#schema-checks) | Schemas — `Schema` definitions and attribute maps | 37 |
 | [`V`](docs/reference/checks.md#validation-checks) | Validation — `SchemaValidateFunc` and `helper/validation` usage | 7 |
 | [`X*`](docs/reference/checks.md#extra-checks) | Extra opt-in checks, available via `tfsproutx` | 11 |
 

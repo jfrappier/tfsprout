@@ -11,7 +11,7 @@ disable_toc: true
 
 <p class="hero-tagline">Static analysis for Terraform Provider source code.</p>
 
-<p class="hero-sub">84 checks over a provider's Go source, reporting the patterns that cause bugs, fail schema validation at runtime, or drift from Terraform Plugin SDK conventions.</p>
+<p class="hero-sub">85 checks over a provider's Go source, reporting the patterns that cause bugs, fail schema validation at runtime, or drift from Terraform Plugin SDK conventions.</p>
 
 <p class="hero-actions">
 <a class="btn-primary" href="install/">Install</a>
@@ -67,7 +67,7 @@ that swallow retryable errors, unstable IDs, Go `panic` usage.
 </div>
 
 <div class="card card--s" markdown="1">
-### [Schemas](reference/checks.md#schema-checks) <span class="card-count">36</span>
+### [Schemas](reference/checks.md#schema-checks) <span class="card-count">37</span>
 Contradictory field combinations, missing `Elem` on `TypeList`/`TypeSet`/`TypeMap`,
 invalid `ConflictsWith` references, invalid attribute names.
 </div>
@@ -113,7 +113,7 @@ A further 11 [extra checks](concepts/standard-vs-extra.md) are opt-in through
 
 <div class="card" markdown="1">
 ### Reference
-- [Check index](reference/checks.md) — all 93 IDs, each with its own page
+- [Check index](reference/checks.md) — all 94 IDs, each with its own page
 - [CLI reference](reference/cli.md) — every flag both commands accept
 - [Exit codes and output](reference/exit-codes-and-output.md) — what it prints and returns
 - [Changelog](changelog.md) — release history
