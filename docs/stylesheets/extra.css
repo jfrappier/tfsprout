@@ -381,7 +381,7 @@ h6:hover .headerlink { opacity: 1; }
 }
 
 /* Below the affix breakpoint the sidebar is static and stacks above the
-   article, which would put 95 catalogue entries -- some 4,800px of them --
+   article, which would put 99 catalogue entries -- some 4,800px of them --
    between the reader and the check they came for. Cap it so the page still
    opens on its own heading. */
 @media (max-width: 991px) {

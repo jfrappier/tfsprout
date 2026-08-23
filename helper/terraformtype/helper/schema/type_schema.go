@@ -37,6 +37,7 @@ const (
 	SchemaFieldType              = `Type`
 	SchemaFieldValidateDiagFunc  = `ValidateDiagFunc`
 	SchemaFieldValidateFunc      = `ValidateFunc`
+	SchemaFieldWriteOnly         = `WriteOnly`
 
 	SchemaValueTypeBool   = `TypeBool`
 	SchemaValueTypeFloat  = `TypeFloat`

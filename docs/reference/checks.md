@@ -111,6 +111,10 @@ Patterns in `schema.Schema` definitions and attribute maps. Several of these cat
 | [S037](../checks/S037.md) | check for `Schema` with invalid `ExactlyOneOf` attribute references | AST |
 | [S038](../checks/S038.md) | check for `Schema` with both `ValidateFunc` and `ValidateDiagFunc` configured | AST |
 | [S039](../checks/S039.md) | check for `Schema` with invalid resource identity configuration | AST |
+| [S040](../checks/S040.md) | check for `Schema` with only `Computed` enabled and `ValidateDiagFunc` configured | AST |
+| [S041](../checks/S041.md) | check for `Schema` with `WriteOnly` and an incompatible field configured | AST |
+| [S042](../checks/S042.md) | check for `Schema` of `TypeList`, `TypeMap`, or `TypeSet` with `WriteOnly` enabled | AST |
+| [S043](../checks/S043.md) | check for `Schema` of `TypeSet` or `Computed` block containing `WriteOnly` attributes | AST |
 
 ### Validation checks
 
